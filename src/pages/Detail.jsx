@@ -3,16 +3,34 @@ import { Card } from "@/components/ui/card";
 import { Image } from "@nextui-org/image";
 import "aos/dist/aos.css";
 import AOS from "aos";
-import { Divider } from "@nextui-org/divider";
-import { Separator } from "@/components/ui/separator";
+import { Divider } from "@nextui-org/react";
 import { CalendarDays } from "lucide-react";
 import { Timer } from "lucide-react";
-import { LocateIcon } from "lucide-react";
 import { MapPinned } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { User } from "lucide-react";
 import { CreditCard } from "lucide-react";
+import { Card as Cardn } from "@nextui-org/react";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  useDisclosure,
+} from "@nextui-org/react";
 export default function Detail() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [modalImage, setModalImage] = useState("");
+
+  const openModal = (imageSrc) => {
+    setModalImage(imageSrc);
+    onOpen();
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setModalImage("");
+  };
   const targetDate = new Date("2024-08-25T08:00:00"); // Tanggal dan waktu target
 
   useEffect(() => {
@@ -201,14 +219,21 @@ export default function Detail() {
             </h4>
           </div>
         </div>
-        <img
+        {/* <img
           src="/pola3.png"
           alt="Decorative Leaf"
           className="absolute bottom-0 left-0 w-32 h-32 object-cover -rotate-90 z-0"
-        />
+        /> */}
       </section>
+      <Divider/>
       <section className="w-[450px]  flex flex-col items-center p-6 min-h-screen bg-[#E2E2B6]">
-        <div className="mt-[100px]"></div>
+        <div className=" relative">
+          <img
+            src="/objek5.png"
+            alt="Decorative Leaf"
+            className="w-full h-full rotate-2"
+          />
+        </div>
         <div className="w-72 text-center mb-6">
           <h1 className="font-montserrat text-2xl font-bold">PELAKSANAAN</h1>
         </div>
@@ -261,6 +286,11 @@ export default function Detail() {
           </section>
           <section>
             <img
+              src="/6.png"
+              alt="Decorative Leaf"
+              className="absolute bottom-0 right-0 object-cover h-56 w-[385px]"
+            />
+            <img
               src="/objek2.png"
               alt="Decorative Leaf"
               className="absolute bottom-0 h-[200px]  object-cover "
@@ -274,20 +304,21 @@ export default function Detail() {
           </section>
         </Card>
       </section>
-      <section className="w-[450px] relative flex flex-col items-center p-6 min-h-screen bg-gray-50">
+      <Divider/>
+      <section className="w-[450px] flex flex-col items-center p-6 min-h-screen bg-gray-50">
         <h1 className="font-montserrat text-4xl font-light mt-[100px] mb-6">
           Agenda Acara
         </h1>
         <section className="relative max-w-[920px] w-full">
           {/* Vertical Line */}
           <div className="absolute inset-0 flex justify-center items-start">
-            <div className="w-[2px] h-[550px] bg-black"></div>
+            <div className="w-[2px] h-[450px] bg-black"></div>
           </div>
 
           {/* Text Containers */}
-          <div className="relative flex justify-between items-start pt-[50px] px-8">
+          <div className="relative z-10 flex justify-between items-start pt-[50px] px-8">
             {/* Left Text */}
-            <div className="flex-1 flex flex-col  pr-4">
+            <div className="flex-1 flex flex-col pr-4">
               <p className="font-montserrat text-lg mb-4">
                 PROSESI PENYAMBUTAN
               </p>
@@ -300,34 +331,38 @@ export default function Detail() {
                 <p className="font-montserrat text-lg mb-4">PROSESI INTI</p>
               </div>
               <Divider className="border-black border-1" />
-              <h1 className="font-noto text-md">-Pembukaan </h1>
-              <h1 className="font-noto text-md">-Sambutan </h1>
+              <h1 className="font-noto text-md">-Pembukaan</h1>
+              <h1 className="font-noto text-md">-Sambutan</h1>
               <h1 className="font-noto text-md">-Fun Game</h1>
               <h1 className="font-noto text-md">
-                -Penampilan Seni dan Hiburan{" "}
+                -Penampilan Seni dan Hiburan
               </h1>
-              <h1 className="font-noto text-md">-Story of us </h1>
-              <h1 className="font-noto text-md">-Penutupan dan Doa </h1>
+              <h1 className="font-noto text-md">-Story of us</h1>
+              <h1 className="font-noto text-md">-Penutupan dan Doa</h1>
               {/* Add more paragraphs as needed */}
             </div>
           </div>
         </section>
-        <img
-          src="/6.png"
-          alt="Decorative Leaf"
-          className="absolute bottom-0 right-0"
-        />
-        <img
-          src="/objek3.png"
-          alt="Decorative Leaf"
-          className="absolute bottom-0 right-0"
-        />
-        <img
-          src="/objek2.png"
-          alt="Decorative Leaf"
-          className="absolute bottom-0 left-0 h-52"
-        />
+
+        <section className="relative mt-8">
+          <img
+            src="/6.png"
+            alt="Decorative Leaf"
+            className="absolute bottom-0 right-0 object-cover h-60 w-60"
+          />
+          <img
+            src="/objek3.png"
+            alt="Decorative Leaf"
+            className="absolute bottom-0 right-0 object-cover w-32 h-32"
+          />
+          <img
+            src="/objek2.png"
+            alt="Decorative Leaf"
+            className="absolute bottom-0 left-0 w-32 h-42 object-cover"
+          />
+        </section>
       </section>
+
       <Divider />
       <section className="w-[450px] relative flex flex-col items-center p-6 min-h-screen bg-[#E2E9C5]">
         <h1 className="font-montserrat text-4xl font-light mt-[100px] mb-6 text-center text-[#3a3a3a]">
@@ -358,7 +393,7 @@ export default function Detail() {
               <p className="font-montserrat text-lg text-gray-800 mb-1">
                 Ajila Dwi Sastra
               </p>
-              <Button className="bg-[#5f6d33] text-white py-2 px-4 rounded-full shadow-md hover:bg-[#374118]">
+              <Button onClick={() => window.open("https://wa.me/6285900268702")} className="bg-[#5f6d33] text-white py-2 px-4 rounded-full shadow-md hover:bg-[#374118]">
                 +62 859-0026-8702
               </Button>
             </Card>
@@ -373,7 +408,7 @@ export default function Detail() {
               <p className="font-montserrat text-lg text-gray-800 mb-1">
                 Haikal Adelia Putra
               </p>
-              <Button className="bg-[#5f6d33] text-white py-2 px-4 rounded-full shadow-md hover:bg-[#374118]">
+              <Button onClick={() => window.open("https://wa.me/6282128436309")} className="bg-[#5f6d33] text-white py-2 px-4 rounded-full shadow-md hover:bg-[#374118]">
                 +62 821-2843-6309
               </Button>
             </Card>
@@ -408,6 +443,28 @@ export default function Detail() {
             </Card>
           </div>
         </div>
+      </section>
+      <section className="w-[450px] relative flex flex-col items-center p-6 min-h-screen bg-gray-50">
+        <h2 className="font-montserrat text-4xl font-bold mb-4 text-center text-[#3a3a3a] mt-[50%]">
+          Our Gallery
+        </h2>
+        <div className="mt-20"></div>
+        <section className="grid grid-cols-1 gap-8">
+          <Cardn>
+            <Image
+              onClick={() => openModal("/ALBUM_1.jpg")}
+              src="/ALBUM_1.jpg"
+              alt="Album 1"
+              objectFit="cover"
+            />
+          </Cardn>
+          <Cardn onClick={() => openModal("/ALBUM_2.jpg")}>
+            <Image src="/ALBUM_2.jpg" alt="Album 2" objectFit="cover" />
+          </Cardn>
+          <Cardn onClick={() => openModal("/ALBUM_3.jpg")}>
+            <Image src="/ALBUM_3.jpg" alt="Album 3" objectFit="cover" />
+          </Cardn>
+        </section>
       </section>
     </>
   );
