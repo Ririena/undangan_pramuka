@@ -12,6 +12,9 @@ import { CreditCard } from "lucide-react";
 import { Card as Cardn } from "@nextui-org/react";
 import BottomNavigation from "../components/BottomNavigation";
 import { Link } from "@nextui-org/link";
+import { Input } from "@nextui-org/react";
+import { Select, SelectItem } from "@nextui-org/react";
+import { Textarea } from "@nextui-org/react";
 import { UserRoundPlus, Home, Book, Box } from "lucide-react";
 import {
   Modal,
@@ -21,13 +24,37 @@ import {
   ModalFooter,
   useDisclosure,
 } from "@nextui-org/react";
+import { status } from "./../json/data";
+import { supabase } from "@/config/supabase";
 export default function Detail() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [modalImage, setModalImage] = useState("");
 
+  const [selectedStatus, setSelectedStatus] = useState("");
+  const [name, setName] = useState("");
+
   const openModal = (imageSrc) => {
     setModalImage(imageSrc);
     onOpen();
+  };
+
+  const handleSave = async (e) => {
+    e.preventDefault();
+
+    const newData = {
+      daftar_nama: name,
+      daftar_kehadiran: selectedStatus,
+      daftar_total_harga: 180000,
+    };
+
+    const { data, error } = await supabase
+      .from("pendaftaran")
+      .insert([newData]);
+    if (error) {
+      console.error(error.message);
+    } else {
+      alert("Success");
+    }
   };
 
   const closeModal = () => {
@@ -475,6 +502,18 @@ export default function Detail() {
           </Cardn>
         </section>
       </section>
+      <section className="w-[450px] relative flex flex-col items-center p-6 h-[600px] bg-[#E2E9C5]">
+        <div className="mt-20"></div>
+        <Image src="/logo.png" className="rotate-[10deg]" width={300} />
+        <div>
+          <h1 className="font-montserrat text-md text-center mt-8 text-[#3a3a3a] font-medium">
+            Merupakan Suatu Kebahagiaan dan Kehormatan bagi Kami, Apabila
+            Bapak/Ibu/Saudara/i, Berkenan Hadir di Acara kami
+          </h1>
+
+          <p className="mt-12 text-center font-serif"> - Terima Kasih -</p>
+        </div>
+      </section>
       {/*NAVIGATION */}
       <div className="fixed bottom-0 inset-x-0 bg-white border-t border-gray-200 shadow-lg lg:hidden z-50">
         <div className="flex justify-between items-center py-2 px-4 bg-gradient-to-t from-gray-100 to-white">
@@ -530,16 +569,46 @@ export default function Detail() {
                 </p>
 
                 <div className="mt-4"></div>
-                
+
+                <div className="grid grid-cols-1 gap-8">
+                  <form
+                    onSubmit={handleSave}
+                    className="w-full max-w-lg bg-white shadow-md rounded-lg p-6 mb-6"
+                  >
+                    <h2 className="text-xl font-bold mb-4">Pendaftaran</h2>
+                    <div className="mb-4">
+                      <Input
+                        type="text"
+                        label="Nama"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div className="mb-4">
+                      <Select
+                        value={selectedStatus}
+                        onChange={(e) => setSelectedStatus(e.target.value)}
+                        items={status}
+                        label="Status"
+                        placeholder="Kehadiran"
+                        className="max-w-full"
+                      >
+                        {(status) => <SelectItem>{status.label}</SelectItem>}
+                      </Select>
+                    </div>
+                    <div className="mb-4">
+                      <Textarea
+                        label="Catatan"
+                        placeholder="Tambahkan catatan tambahan jika ada..."
+                      />
+                    </div>
+                    <Button type="submit" color="primary" className="w-full">
+                      Simpan
+                    </Button>
+                  </form>
+                </div>
               </ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
-                  Close
-                </Button>
-                <Button color="primary" onPress={onClose}>
-                  Action
-                </Button>
-              </ModalFooter>
             </>
           )}
         </ModalContent>
