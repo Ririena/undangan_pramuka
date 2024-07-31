@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "@nextui-org/link";
-import { Home, Book, Box } from "lucide-react";
+import { UserRoundPlus, Home, Book, Box } from "lucide-react";
 import { Button } from "./ui/button";
 export default function BottomNavigation() {
   return (
@@ -13,6 +13,13 @@ export default function BottomNavigation() {
           >
             <Home className="text-gray-600" size={24} />
             <p className="text-sm text-gray-600 mt-1">Home</p>
+          </Link>
+          <Link
+            href="/plot"
+            className="text-center flex-1 flex flex-col items-center"
+          >
+            <UserRoundPlus />
+            <p className="text-sm text-gray-600 mt-1">Daftar</p>
           </Link>
           <Link
             href="/plot"

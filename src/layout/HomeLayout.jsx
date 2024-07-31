@@ -10,7 +10,6 @@ export default function HomeLayout() {
         {/* Adjust the padding-top based on Header height */}
         <Outlet />
       </div>
-      <BottomNavigation />
-</>
+    </>
   );
 }

@@ -10,6 +10,9 @@ import { MapPinned } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CreditCard } from "lucide-react";
 import { Card as Cardn } from "@nextui-org/react";
+import BottomNavigation from "../components/BottomNavigation";
+import { Link } from "@nextui-org/link";
+import { UserRoundPlus, Home, Book, Box } from "lucide-react";
 import {
   Modal,
   ModalContent,
@@ -19,7 +22,7 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 export default function Detail() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [modalImage, setModalImage] = useState("");
 
   const openModal = (imageSrc) => {
@@ -34,7 +37,7 @@ export default function Detail() {
   const targetDate = new Date("2024-08-25T08:00:00"); // Tanggal dan waktu target
 
   useEffect(() => {
-    AOS.init({ duration: 1000 });
+    AOS.init();
   }, []);
 
   const [timeLeft, setTimeLeft] = useState({
@@ -225,7 +228,7 @@ export default function Detail() {
           className="absolute bottom-0 left-0 w-32 h-32 object-cover -rotate-90 z-0"
         /> */}
       </section>
-      <Divider/>
+      <Divider />
       <section className="w-[450px]  flex flex-col items-center p-6 min-h-screen bg-[#E2E2B6]">
         <div className=" relative">
           <img
@@ -304,7 +307,7 @@ export default function Detail() {
           </section>
         </Card>
       </section>
-      <Divider/>
+      <Divider />
       <section className="w-[450px] flex flex-col items-center p-6 min-h-screen bg-gray-50">
         <h1 className="font-montserrat text-4xl font-light mt-[100px] mb-6">
           Agenda Acara
@@ -393,7 +396,10 @@ export default function Detail() {
               <p className="font-montserrat text-lg text-gray-800 mb-1">
                 Ajila Dwi Sastra
               </p>
-              <Button onClick={() => window.open("https://wa.me/6285900268702")} className="bg-[#5f6d33] text-white py-2 px-4 rounded-full shadow-md hover:bg-[#374118]">
+              <Button
+                onClick={() => window.open("https://wa.me/6285900268702")}
+                className="bg-[#5f6d33] text-white py-2 px-4 rounded-full shadow-md hover:bg-[#374118]"
+              >
                 +62 859-0026-8702
               </Button>
             </Card>
@@ -408,7 +414,10 @@ export default function Detail() {
               <p className="font-montserrat text-lg text-gray-800 mb-1">
                 Haikal Adelia Putra
               </p>
-              <Button onClick={() => window.open("https://wa.me/6282128436309")} className="bg-[#5f6d33] text-white py-2 px-4 rounded-full shadow-md hover:bg-[#374118]">
+              <Button
+                onClick={() => window.open("https://wa.me/6282128436309")}
+                className="bg-[#5f6d33] text-white py-2 px-4 rounded-full shadow-md hover:bg-[#374118]"
+              >
                 +62 821-2843-6309
               </Button>
             </Card>
@@ -466,6 +475,76 @@ export default function Detail() {
           </Cardn>
         </section>
       </section>
+      {/*NAVIGATION */}
+      <div className="fixed bottom-0 inset-x-0 bg-white border-t border-gray-200 shadow-lg lg:hidden z-50">
+        <div className="flex justify-between items-center py-2 px-4 bg-gradient-to-t from-gray-100 to-white">
+          <Link
+            href="/"
+            className="text-center flex-1 flex flex-col items-center"
+          >
+            <Home className="text-gray-600" size={24} />
+            <p className="text-sm text-gray-600 mt-1">Home</p>
+          </Link>
+          <Link
+            className="text-center flex-1 flex flex-col items-center"
+            onPress={onOpen}
+          >
+            <UserRoundPlus />
+            <p className="text-sm text-gray-600 mt-1">Daftar</p>
+          </Link>
+          <Link
+            href="/plot"
+            className="text-center flex-1 flex flex-col items-center"
+          >
+            <Book className="text-gray-600" size={24} />
+            <p className="text-sm text-gray-600 mt-1">Plot</p>
+          </Link>
+          <Link
+            href="/items"
+            className="text-center flex-1 flex flex-col items-center"
+          >
+            <Box className="text-gray-600" size={24} />
+            <p className="text-sm text-gray-600 mt-1">Items</p>
+          </Link>
+        </div>
+      </div>
+      <Modal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        isDismissable={false}
+        isKeyboardDismissDisabled={true}
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                <h1 className="text-sm font-montserrat font-medium">
+                  Konfirmasikan Kehadiran Anda Kepemiliki Acara
+                </h1>
+                <Divider />
+              </ModalHeader>
+              <ModalBody>
+                <p className="text-sm font-montserrat text-center">
+                  Pemilik acara mengharapkan konfirmasi kehadiranmu di acara
+                  Musrenbang RKPD Kota Serang Tahun 2024
+                </p>
+
+                <div className="mt-4"></div>
+                
+              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="light" onPress={onClose}>
+                  Close
+                </Button>
+                <Button color="primary" onPress={onClose}>
+                  Action
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+      {/* NAVIGATION MODAL */}
     </>
   );
 }
