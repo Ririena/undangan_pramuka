@@ -196,39 +196,39 @@ export default function Detail() {
           <h2 className="text-xl font-bold text-center mb-4" data-aos="zoom-in">
             Countdown:
           </h2>
-          <div className="grid grid-cols-4 gap-4 relative z-10">
+          <div className="grid grid-cols-4 gap-3 relative z-10">
             <Card
-              className="p-4 text-center shadow-md bg-[#3C4321]"
+              className="p-2 text-center shadow-md bg-[#3C4321]"
               data-aos-delay="100"
             >
-              <p className="text-2xl font-bold text-gray-200">
+              <p className="text-xl font-bold text-gray-200">
                 {timeLeft.days}
               </p>
               <p className="text-sm text-gray-200">Days</p>
             </Card>
             <Card
-              className="p-4 text-center shadow-md bg-[#3C4321]"
+              className="p-2 text-center shadow-md bg-[#3C4321]"
               data-aos-delay="200"
             >
-              <p className="text-2xl text-gray-200 font-bold">
+              <p className="text-xl text-gray-200 font-bold">
                 {timeLeft.hours}
               </p>
               <p className="text-sm text-gray-200">Hours</p>
             </Card>
             <Card
-              className="p-4 text-center shadow-md bg-[#3C4321]"
+              className="p-2 text-center shadow-md bg-[#3C4321]"
               data-aos-delay="300"
             >
-              <p className="text-2xl font-bold text-gray-200">
+              <p className="text-xl font-bold text-gray-200">
                 {timeLeft.minutes}
               </p>
               <p className="text-sm text-gray-200">Minutes</p>
             </Card>
             <Card
-              className="p-4 text-center shadow-md bg-[#3C4321]"
+              className="p-2 text-center shadow-md bg-[#3C4321]"
               data-aos-delay="400"
             >
-              <p className="text-2xl font-bold text-gray-200">
+              <p className="text-xl font-bold text-gray-200">
                 {timeLeft.seconds}
               </p>
               <p className="text-sm text-gray-200">Seconds</p>
