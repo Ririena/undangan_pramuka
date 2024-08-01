@@ -168,7 +168,7 @@ export default function Detail() {
         <div className="flex justify-center items-center mb-6">
           <Card className="w-72 ">
             <div className="flex justify-between m-4 ">
-              <p>Pangkalan:</p>
+              <p>Pangkalan</p>
               <p>SMKN 7 BALEENDAH</p>
             </div>
             <div className="flex justify-between m-4 ">
