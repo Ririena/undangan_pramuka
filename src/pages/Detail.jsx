@@ -591,7 +591,7 @@ export default function Detail() {
               <ModalBody>
                 <p className="text-sm font-montserrat text-center">
                   Pemilik acara mengharapkan konfirmasi kehadiranmu di acara
-                  Musrenbang RKPD Kota Serang Tahun 2024
+                  Pandu Memories 2.
                 </p>
 
                 <div className="mt-4"></div>
