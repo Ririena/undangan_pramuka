@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Card } from "@/components/ui/card";
 import { Image } from "@nextui-org/image";
+
+import { useToast } from "@/components/ui/use-toast";
+
 import "aos/dist/aos.css";
 import AOS from "aos";
 import { Divider } from "@nextui-org/react";
@@ -26,14 +29,32 @@ import {
 } from "@nextui-org/react";
 import { status } from "./../json/data";
 import { supabase } from "@/config/supabase";
+import { Description } from "@radix-ui/react-toast";
 export default function Detail() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [modalImage, setModalImage] = useState("");
-
+  const [autoScroll, setAutoScroll] = useState(true);
+  const containerRef = useRef(null);
   const [selectedStatus, setSelectedStatus] = useState("");
   const [name, setName] = useState("");
-  const [keterangan, setKeterangan] = useState("")
+  const [keterangan, setKeterangan] = useState("");
 
+  const { toast } = useToast();
+  useEffect(() => {
+    if (autoScroll) {
+      const container = containerRef.current;
+      if (container) {
+        container.scrollTo({
+          top: container.scrollHeight,
+          behavior: "smooth",
+        });
+      }
+    }
+  }, [autoScroll]);
+
+  const toggleAutoScroll = () => {
+    setAutoScroll(!autoScroll);
+  };
   const openModal = (imageSrc) => {
     setModalImage(imageSrc);
     onOpen();
@@ -46,7 +67,6 @@ export default function Detail() {
       daftar_nama: name,
       daftar_kehadiran: selectedStatus,
       daftar_total_harga: 180000,
-      daftar_keterangan: ketrangan
     };
 
     const { data, error } = await supabase
@@ -55,7 +75,11 @@ export default function Detail() {
     if (error) {
       console.error(error.message);
     } else {
-      alert("Success");
+      toast({
+        title: "Berhasil",
+        description: "Anda Sukses Mendaftar!!",
+        variant: "success",
+      });
     }
   };
 
@@ -105,8 +129,8 @@ export default function Detail() {
   return (
     <>
       <main className="bg-[#E2E9C5] w-[450px] relative flex flex-col items-center p-6 min-h-screen">
-        <div className=""></div>
-        <h1 className="mt-[100px]  font-montserrat text-2xl font-semibold text-center">
+        <div className="mt-8"></div>
+        <h1 className="  font-montserrat text-2xl font-semibold text-center">
           PRAMUKA
         </h1>
         <p className="font-montserrat text-2xl font-semibold mb-4">
@@ -114,13 +138,13 @@ export default function Detail() {
         </p>
         <section
           data-aos="zoom-in"
-          className="relative  flex flex-col items-center mb-12 bg-white p-6 rounded-lg shadow-lg"
+          className="relative  flex flex-col items-center mb-12 w-[290px] bg-white p-6 rounded-lg shadow-lg"
         >
           <div
             data-aos="zoom-in"
             className="flex justify-center items-center mb-6"
           >
-            <Card data-aos="zoom-in" className="relative z-10">
+            <div data-aos="zoom-in" className="relative z-10">
               <Image
                 src="/logo.png"
                 alt="Logo"
@@ -132,7 +156,7 @@ export default function Detail() {
               <h1 className="text-center font-montserrat text-md mt-4">
                 Pandu Memories 2
               </h1>
-            </Card>
+            </div>
           </div>
         </section>
         {/* <h1
@@ -174,8 +198,7 @@ export default function Detail() {
           </h2>
           <div className="grid grid-cols-4 gap-4 relative z-10">
             <Card
-              className="p-4 text-center shadow-md bg-[#03346E]"
-              data-aos="fade-up"
+              className="p-4 text-center shadow-md bg-[#3C4321]"
               data-aos-delay="100"
             >
               <p className="text-2xl font-bold text-gray-200">
@@ -184,8 +207,7 @@ export default function Detail() {
               <p className="text-sm text-gray-200">Days</p>
             </Card>
             <Card
-              className="p-4 text-center shadow-md bg-[#03346E]"
-              data-aos="fade-up"
+              className="p-4 text-center shadow-md bg-[#3C4321]"
               data-aos-delay="200"
             >
               <p className="text-2xl text-gray-200 font-bold">
@@ -194,8 +216,7 @@ export default function Detail() {
               <p className="text-sm text-gray-200">Hours</p>
             </Card>
             <Card
-              className="p-4 text-center shadow-md bg-[#03346E]"
-              data-aos="fade-up"
+              className="p-4 text-center shadow-md bg-[#3C4321]"
               data-aos-delay="300"
             >
               <p className="text-2xl font-bold text-gray-200">
@@ -204,8 +225,7 @@ export default function Detail() {
               <p className="text-sm text-gray-200">Minutes</p>
             </Card>
             <Card
-              className="p-4 text-center shadow-md bg-[#03346E]"
-              data-aos="fade-up"
+              className="p-4 text-center shadow-md bg-[#3C4321]"
               data-aos-delay="400"
             >
               <p className="text-2xl font-bold text-gray-200">
@@ -215,18 +235,7 @@ export default function Detail() {
             </Card>
           </div>
 
-          <img
-            src="/pola3.png"
-            alt="Decorative Leaf"
-            className="absolute bottom-0 left-0 w-32 h-32 object-cover -rotate-90 z-0"
-          />
-          <div>
-            <img
-              src="/pola3.png"
-              alt="Decorative Leaf"
-              className="absolute bottom-0 right-0 w-32 h-32 object-cover rotate-180 z-0"
-            />
-          </div>
+          <div></div>
         </div>
       </main>
       <Divider className="" />
@@ -347,6 +356,10 @@ export default function Detail() {
               src="/6.png"
               alt="Decorative Leaf"
               className="absolute bottom-0 right-0 object-cover h-56 w-[385px]"
+            />
+            <img
+              src="/objek3.png"
+              className="absolute bottom-0 left-24 object-cover h-32"
             />
             <img
               src="/objek2.png"
@@ -515,13 +528,13 @@ export default function Detail() {
         <div className="mt-20"></div>
         <section className="grid grid-cols-1 gap-8">
           <Cardn>
-            <Image src="/ALBUM_1.jpg" alt="Album 1" objectFit="cover" />
+            <Image src="/ALBUM_1.jpg" alt="Album 1" />
           </Cardn>
           <Cardn>
-            <Image src="/ALBUM_2.jpg" alt="Album 2" objectFit="cover" />
+            <Image src="/ALBUM_2.jpg" alt="Album 2" />
           </Cardn>
           <Cardn>
-            <Image src="/ALBUM_3.jpg" alt="Album 3" objectFit="cover" />
+            <Image src="/ALBUM_3.jpg" alt="Album 3" />
           </Cardn>
         </section>
       </section>
@@ -538,7 +551,7 @@ export default function Detail() {
         </div>
       </section>
       {/*NAVIGATION */}
-      <div className="fixed bottom-0 inset-x-0 bg-white border-t border-gray-200 shadow-lg lg:hidden z-50">
+      <div className="fixed bottom-0 w-[450px] bg-white border-t border-gray-200 shadow-lg  z-50">
         <div className="flex justify-between items-center py-2 px-4 bg-gradient-to-t from-gray-100 to-white">
           <Link
             href="/"
@@ -606,14 +619,7 @@ export default function Detail() {
                         {(status) => <SelectItem>{status.label}</SelectItem>}
                       </Select>
                     </div>
-                    <div className="mb-4">
-                      <Textarea
-                        label="Catatan"
-                        value={keterangan}
-                        onChange={(e) => setKeterangan(e.target.value)}
-                        placeholder="Tambahkan catatan tambahan jika ada..."
-                      />
-                    </div>
+                    <div className="mb-4"></div>
                     <Button
                       type="submit"
                       className="w-full bg-[#5f6d33] hover:bg-[#374118] "

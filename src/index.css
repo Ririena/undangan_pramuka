@@ -83,6 +83,13 @@ body {
   overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
+.coverbg {
+  background-image: url('/Untitled design.png'); 
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 /* Update max-width and background color with media queries */
 @media (min-width: 430px) {
   body {
@@ -98,4 +105,18 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center; /* Center align contents */
+}
+
+
+/* Add these to your global CSS or Tailwind configuration */
+.bg-success {
+  background-color: #4caf50; /* Green background */
+}
+
+.text-success-foreground {
+  color: #ffffff; /* White text */
+}
+
+.border-success {
+  border-color: #388e3c; /* Darker green border */
 }
