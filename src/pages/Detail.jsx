@@ -513,17 +513,12 @@ export default function Detail() {
         <div className="mt-20"></div>
         <section className="grid grid-cols-1 gap-8">
           <Cardn>
-            <Image
-              onClick={() => openModal("/ALBUM_1.jpg")}
-              src="/ALBUM_1.jpg"
-              alt="Album 1"
-              objectFit="cover"
-            />
+            <Image src="/ALBUM_1.jpg" alt="Album 1" objectFit="cover" />
           </Cardn>
-          <Cardn onClick={() => openModal("/ALBUM_2.jpg")}>
+          <Cardn>
             <Image src="/ALBUM_2.jpg" alt="Album 2" objectFit="cover" />
           </Cardn>
-          <Cardn onClick={() => openModal("/ALBUM_3.jpg")}>
+          <Cardn>
             <Image src="/ALBUM_3.jpg" alt="Album 3" objectFit="cover" />
           </Cardn>
         </section>
@@ -556,20 +551,6 @@ export default function Detail() {
           >
             <UserRoundPlus />
             <p className="text-sm text-gray-600 mt-1">Daftar</p>
-          </Link>
-          <Link
-            href="/plot"
-            className="text-center flex-1 flex flex-col items-center"
-          >
-            <Book className="text-gray-600" size={24} />
-            <p className="text-sm text-gray-600 mt-1">Plot</p>
-          </Link>
-          <Link
-            href="/items"
-            className="text-center flex-1 flex flex-col items-center"
-          >
-            <Box className="text-gray-600" size={24} />
-            <p className="text-sm text-gray-600 mt-1">Items</p>
           </Link>
         </div>
       </div>
@@ -629,7 +610,10 @@ export default function Detail() {
                         placeholder="Tambahkan catatan tambahan jika ada..."
                       />
                     </div>
-                    <Button type="submit" color="primary" className="w-full">
+                    <Button
+                      type="submit"
+                      className="w-full bg-[#5f6d33] hover:bg-[#374118] "
+                    >
                       Simpan
                     </Button>
                   </form>
