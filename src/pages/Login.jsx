@@ -13,9 +13,10 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/config/supabase";
 import { useState } from "react";
-import { toast } from "react-toastify";
+import { useToast } from "@/components/ui/use-toast";
 export default function Login() {
   const navigate = useNavigate();
+  const { toast } = useToast();
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -57,17 +58,11 @@ export default function Login() {
       if (error) {
         console.log(error);
       } else {
-        toast(' Sukses Mendaftar', {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            transition: Bounce,
-            });
+        toast({
+            title: "Berhasil",
+            description: "Anda Sukses Mendaftar!!",
+            variant: "success",
+          });
         navigate("/admin");
       }
       console.log(data);
