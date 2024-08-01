@@ -32,6 +32,7 @@ export default function Detail() {
 
   const [selectedStatus, setSelectedStatus] = useState("");
   const [name, setName] = useState("");
+  const [keterangan, setKeterangan] = useState("")
 
   const openModal = (imageSrc) => {
     setModalImage(imageSrc);
@@ -45,6 +46,7 @@ export default function Detail() {
       daftar_nama: name,
       daftar_kehadiran: selectedStatus,
       daftar_total_harga: 180000,
+      daftar_keterangan: ketrangan
     };
 
     const { data, error } = await supabase
@@ -607,6 +609,8 @@ export default function Detail() {
                     <div className="mb-4">
                       <Textarea
                         label="Catatan"
+                        value={keterangan}
+                        onChange={(e) => setKeterangan(e.target.value)}
                         placeholder="Tambahkan catatan tambahan jika ada..."
                       />
                     </div>
