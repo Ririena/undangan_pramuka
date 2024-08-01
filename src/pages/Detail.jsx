@@ -102,7 +102,7 @@ export default function Detail() {
 
   return (
     <>
-      <main className="bg-[#6eacda] w-[450px] relative flex flex-col items-center p-6 min-h-screen">
+      <main className="bg-[#E2E9C5] w-[450px] relative flex flex-col items-center p-6 min-h-screen">
         <div className=""></div>
         <h1 className="mt-[100px]  font-montserrat text-2xl font-semibold text-center">
           PRAMUKA
@@ -124,17 +124,42 @@ export default function Detail() {
                 alt="Logo"
                 height={160}
                 width={160}
-                className="object-contain rotate-6"
+                className="object-contain rotate-[8deg]"
               />
+              <Divider />
+              <h1 className="text-center font-montserrat text-md mt-4">
+                Pandu Memories 2
+              </h1>
             </Card>
           </div>
         </section>
-        <h1
-          data-aos="zoom-in"
+        {/* <h1
+   
           className="w-80 text-2xl font-semibold font-montserrat text-center"
         >
           Pandu Memories 2, SMKN 7 BALEENDAH TAHUN 2024
-        </h1>
+        </h1> */}
+        <div className="flex justify-center items-center mb-6">
+          <Card className="w-72 ">
+            <div className="flex justify-between m-4 ">
+              <p>Pangkalan:</p>
+              <p>SMKN 7 BALEENDAH</p>
+            </div>
+            <div className="flex justify-between m-4 ">
+              <p>Gugus Depan</p>
+              <p>11.157 - 11.158</p>
+            </div>
+
+            <div className="flex justify-between m-4 ">
+              <p>Ambalan</p>
+              <p>RAA. Wiranata Kusumah</p>
+            </div>
+            <div className="flex justify-between m-4 ">
+              <p>.</p>
+              <p className="">RD. Dewi Sartika</p>
+            </div>
+          </Card>
+        </div>
         <p
           data-aos="zoom-in"
           className="font-violet font-semibold font-lg mt-2"
@@ -187,6 +212,7 @@ export default function Detail() {
               <p className="text-sm text-gray-200">Seconds</p>
             </Card>
           </div>
+
           <img
             src="/pola3.png"
             alt="Decorative Leaf"

@@ -16,21 +16,19 @@ function App() {
       </LayoutComponent>
     );
   };
-  const HomeWithLayout = withLayout(HomeLayout, Cover)
+  const HomeWithLayout = withLayout(HomeLayout, Cover);
 
   return (
     <>
       <div className="wrapper">
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<HomeWithLayout />}>
-              <Route index element={<Cover />} />
-              <Route path="detail">
-                <Route index element={<Detail />} />
-              </Route>
+        <Routes>
+          <Route path="/" element={<HomeWithLayout />}>
+            <Route index element={<Cover />} />
+            <Route path="detail">
+              <Route index element={<Detail />} />
             </Route>
-          </Routes>
-        </BrowserRouter>
+          </Route>
+        </Routes>
       </div>
     </>
   );

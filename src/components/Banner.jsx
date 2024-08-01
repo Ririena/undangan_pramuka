@@ -26,13 +26,7 @@ export default function Banner() {
             className="flex justify-center items-center mb-6"
             data-aos="zoom-in"
           >
-            <Card className="w-48 h-32">
-              <Image
-                src="/logo.png"
-                alt="Logo"
-                className="w-full h-full object-contain rotate-6"
-              />
-            </Card>
+            <Image src="/ambalan.png" alt="Logo" className="h-32 " />
           </div>
 
           {/* Grid of Two Cards */}
@@ -62,10 +56,16 @@ export default function Banner() {
           <Divider />
 
           <p
-            className="text-lg text-center mb-6 capitalize font-violet"
-            data-aos="zoom-in"
+            className="text-md text-center  mt-2 capitalize font-violet"
+            data-aos=""
           >
-            Yang terhormat : kakak kakak Purna Ambalan
+            Yang terhormat
+          </p>
+          <p
+            className="text-md text-center capitalize font-violet"
+            data-aos=""
+          >
+            Kakak Kakak Purna Ambalan
           </p>
         </section>
 
