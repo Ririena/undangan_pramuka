@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Image } from "@nextui-org/image";
 import { motion } from "framer-motion";
 import { useToast } from "@/components/ui/use-toast";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 import "aos/dist/aos.css";
 import AOS from "aos";
@@ -144,8 +144,6 @@ export default function Detail() {
     onOpen();
   };
 
-  
-
   useEffect(() => {
     const validNumberOfPeople = numberOfPeople > 0 ? numberOfPeople : 1;
     setTotalPrice(180000 + (validNumberOfPeople - 1) * 35000);
@@ -174,7 +172,7 @@ export default function Detail() {
       });
       setTimeout(() => {
         navigate(0); // This will refresh the current page
-      }, 2500); // 5000 milliseconds = 5 seconds
+      }, 1500); // 5000 milliseconds = 5 seconds
     }
   };
 
@@ -306,44 +304,34 @@ export default function Detail() {
         >
           ─ MINGGU, 1 SEPTEMBER 2024 ─
         </p>
-        <div className="mt-4 w-full max-w-md relative">
+        <div className="mt-4 w-full max-w-md px-4">
           <h2 className="text-xl font-bold text-center mb-4" data-aos="zoom-in">
             Countdown:
           </h2>
-          <div className="grid grid-cols-4 gap-3 relative z-10">
-            <Card
-              className="p-2 text-center shadow-md bg-[#3C4321]"
-            >
+          <div className="grid grid-cols-4 gap-3 md:grid-cols-2 lg:grid-cols-4 relative z-10">
+            <div className="p-4 text-center shadow-md bg-[#3C4321] rounded-lg">
               <p className="text-xl font-bold text-gray-200">{timeLeft.days}</p>
               <p className="text-sm text-gray-200">Days</p>
-            </Card>
-            <Card
-              className="p-2 text-center shadow-md bg-[#3C4321]"
-            >
+            </div>
+            <div className="p-4 text-center shadow-md bg-[#3C4321] rounded-lg">
               <p className="text-xl text-gray-200 font-bold">
                 {timeLeft.hours}
               </p>
               <p className="text-sm text-gray-200">Hours</p>
-            </Card>
-            <Card
-              className="p-2 text-center shadow-md bg-[#3C4321]"
-            >
+            </div>
+            <div className="p-4 text-center shadow-md bg-[#3C4321] rounded-lg">
               <p className="text-xl font-bold text-gray-200">
                 {timeLeft.minutes}
               </p>
               <p className="text-sm text-gray-200">Minutes</p>
-            </Card>
-            <Card
-              className="p-2 text-center shadow-md bg-[#3C4321]"
-            >
+            </div>
+            <div className="p-4 text-center shadow-md bg-[#3C4321] rounded-lg">
               <p className="text-xl font-bold text-gray-200">
                 {timeLeft.seconds}
               </p>
               <p className="text-sm text-gray-200">Seconds</p>
-            </Card>
+            </div>
           </div>
-
-          <div></div>
         </div>
       </main>
       <Divider className="" />
@@ -422,12 +410,13 @@ export default function Detail() {
             <UserRoundPlus />
             <p className="text-sm text-gray-600 mt-1">Daftar</p>
           </Link>
-          <Button
+          <Link
+            className="text-center flex-1 flex flex-col items-center"
             onClick={toggleMusic}
-            className="bg-[#E2E9C5] text-black hover:bg-[#c0c4aa] active:bg-[#a1a587]"
           >
             <Music />
-          </Button>
+            <p className="text-sm text-gray-600 mt-1">Musik</p>
+          </Link>
         </div>
       </div>
       <Modal

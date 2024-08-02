@@ -31,7 +31,6 @@ export default function Banner() {
         <div className="coverbg">
           <section className="w-[450px] relative flex flex-col min-h-screen items-center p-6">
             <div className="h-screen flex items-center justify-center">
-              {/* You can customize the loading screen style or content here */}
               <div className="flex flex-col items-center">
                 <Spinner size="lg" color="success" />
                 <h1 className="mt-4 text-lg font-semibold">Loading...</h1>
