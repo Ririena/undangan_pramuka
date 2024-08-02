@@ -102,7 +102,7 @@ export default function AgendaAcara() {
                 className={inViewRight ? "animate" : "animate-reverse"}
               >
                 <p className="font-violet">08.30 - 09.00</p>
-                <p className="font-violet">Persiapan Panitia</p>
+                <p className="font-violet">Sambutan</p>
               </Zoom>
               <Divider className="mt-2" />
               <Zoom
@@ -126,7 +126,7 @@ export default function AgendaAcara() {
                 className={inViewRight ? "animate" : "animate-reverse"}
               >
                 <p className="font-violet">11.00 - 12.00</p>
-                <p className="font-violet">Photo Studi</p>
+                <p className="font-violet">Photo Studio</p>
               </Zoom>
               <Divider className="mt-2" />
               <Zoom
@@ -153,7 +153,6 @@ export default function AgendaAcara() {
                 <p className="font-violet">Champs Group</p>
               </Zoom>
               <Divider className="mt-2" />
-              {/* Add more paragraphs as needed */}
             </div>
           </div>
         </section>

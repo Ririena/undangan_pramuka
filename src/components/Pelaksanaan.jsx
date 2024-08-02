@@ -25,7 +25,6 @@ export default function Pelaksanaan() {
           <Card className="relative w-96 h-[550px] bg-[#BD9E8B]">
             <section>
               <div className="mt-10 text-gray-900">
-                {/* Ubah warna teks */}
                 <h1 className="text-center font-montserrat font-bold text-2xl text-black">
                   Pandu Memories 2,
                 </h1>
@@ -35,13 +34,11 @@ export default function Pelaksanaan() {
                 <Divider />
               </div>
               <p className="text-center text-lg font-semibold mt-2 text-black">
-                {/* Ubah warna teks */}
                 Detail Acara
               </p>
 
               <div className="whitespace-pre-wrap flex justify-center items-center m-4">
                 <table className="table-fixed w-full text-black">
-                  {/* Ubah warna teks */}
                   <tbody>
                     <tr>
                       <td>

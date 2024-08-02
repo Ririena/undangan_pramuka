@@ -16,24 +16,24 @@ export default function Gallery() {
         <div className="mt-20"></div>
 
         <section className="grid grid-cols-1 gap-8">
-          <Zoom duration={1000} delay={800} level={0.5}>
+          <Zoom triggerOnce={true} duration={1000} delay={800} level={0.5}>
             <Cardn>
               <Image src="/ALBUM_1.jpg" alt="Album 1" />
             </Cardn>
           </Zoom>
 
-          <Zoom duration={1000} delay={900} level={0.5}>
+          <Zoom triggerOnce={true} duration={1000} delay={900} level={0.5}>
             <Cardn>
               <Image src="/ALBUM_2.jpg" alt="Album 2" />
             </Cardn>
           </Zoom>
 
-          <Zoom duration={1000} delay={1000} level={0.5}>
+          <Zoom  triggerOnce={true} duration={1000} delay={1000} level={0.5}>
             <Cardn>
               <Image src="/ALBUM_3.jpg" alt="Album 3" />
             </Cardn>
           </Zoom>
-          <Zoom duration={1000} delay={1100} level={0.5}>
+          <Zoom  triggerOnce={true} duration={1000} delay={1100} level={0.5}>
             <Cardn>
               <Image src="/ALBUM_4.jpg" alt="Album 4" />
             </Cardn>

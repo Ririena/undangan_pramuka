@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Image } from "@nextui-org/image";
 import { motion } from "framer-motion";
 import { useToast } from "@/components/ui/use-toast";
+import { useNavigate } from 'react-router-dom';
 
 import "aos/dist/aos.css";
 import AOS from "aos";
@@ -41,7 +42,7 @@ export default function Detail() {
   const [totalPrice, setTotalPrice] = useState(180000);
 
   const audioRef = useRef(null);
-
+  const navigate = useNavigate();
   const [isPlaying, setIsPlaying] = useState(false);
   const scrollInterval = setInterval(function () {
     window.scrollBy(0, 1000);
@@ -143,6 +144,8 @@ export default function Detail() {
     onOpen();
   };
 
+  
+
   useEffect(() => {
     const validNumberOfPeople = numberOfPeople > 0 ? numberOfPeople : 1;
     setTotalPrice(180000 + (validNumberOfPeople - 1) * 35000);
@@ -169,11 +172,14 @@ export default function Detail() {
         description: "Anda Sukses Mendaftar!!",
         variant: "success",
       });
+      setTimeout(() => {
+        navigate(0); // This will refresh the current page
+      }, 2500); // 5000 milliseconds = 5 seconds
     }
   };
 
   const closeModal = () => {
-    setIsModalOpen(false);
+    onOpenChange(false); // Close modal using the provided method
     setModalImage("");
   };
   const targetDate = new Date("2024-09-01T07:00:00"); // Tanggal dan waktu target
@@ -306,17 +312,13 @@ export default function Detail() {
           </h2>
           <div className="grid grid-cols-4 gap-3 relative z-10">
             <Card
-              data-aos="zoom-in"
               className="p-2 text-center shadow-md bg-[#3C4321]"
-              data-aos-delay="100"
             >
               <p className="text-xl font-bold text-gray-200">{timeLeft.days}</p>
               <p className="text-sm text-gray-200">Days</p>
             </Card>
             <Card
-              data-aos="zoom-in"
               className="p-2 text-center shadow-md bg-[#3C4321]"
-              data-aos-delay="200"
             >
               <p className="text-xl text-gray-200 font-bold">
                 {timeLeft.hours}
@@ -324,9 +326,7 @@ export default function Detail() {
               <p className="text-sm text-gray-200">Hours</p>
             </Card>
             <Card
-              data-aos="zoom-in"
               className="p-2 text-center shadow-md bg-[#3C4321]"
-              data-aos-delay="300"
             >
               <p className="text-xl font-bold text-gray-200">
                 {timeLeft.minutes}
@@ -334,9 +334,7 @@ export default function Detail() {
               <p className="text-sm text-gray-200">Minutes</p>
             </Card>
             <Card
-              data-aos="zoom-in"
               className="p-2 text-center shadow-md bg-[#3C4321]"
-              data-aos-delay="400"
             >
               <p className="text-xl font-bold text-gray-200">
                 {timeLeft.seconds}
@@ -516,6 +514,7 @@ export default function Detail() {
                     <Button
                       type="submit"
                       className="w-full bg-[#5f6d33] hover:bg-[#374118] "
+                      onPress={onClose}
                     >
                       Simpan
                     </Button>

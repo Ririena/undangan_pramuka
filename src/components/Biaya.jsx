@@ -25,8 +25,8 @@ export default function Biaya() {
 
           <Card className="w-[300px] bg-white p-6 shadow-lg rounded-lg border border-gray-300 mb-6">
             <h2 className="font-montserrat text-lg text-center text-gray-700 mb-4">
-              Apabila membawa istri/suami/anak maka donasi bertambah sebesar
-              35.000,- (makan, snack)
+              Apabila membawa istri/suami/anak maka donasi bertambah sebesar Rp.
+              35.000 per orang,- (makan, snack)
             </h2>
           </Card>
 

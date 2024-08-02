@@ -1,12 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/config/supabase";
-import { Card, Divider } from "@nextui-org/react";
-import {Spinner} from "@nextui-org/react";
+import {
+  Divider,
+  Spinner,
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  useDisclosure,
+} from "@nextui-org/react";
+import { Button } from "@/components/ui/button";
+
 export default function Admin() {
   const [dataPendaftar, setDataPendaftar] = useState([]);
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const [deleteId, setDeleteId] = useState(null); 
+  const { isOpen, onOpen, onOpenChange } = useDisclosure(); 
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchRegistrants() {
@@ -39,21 +51,45 @@ export default function Admin() {
     checkAuthentication();
   }, [navigate]);
 
-  if (loading) {
-    return (
-      <main className="bg-[#E2E9C5] w-[450px] flex justify-center items-center min-h-screen">
-        <Spinner size="lg"/>
-      </main>
-    );
-  }
+  
+  const deleteRegistrant = async () => {
+    console.log(`Deleting registrant with id: ${deleteId}`);
+    try {
+      const { error } = await supabase
+        .from("pendaftaran")
+        .delete()
+        .eq("id", deleteId);
 
-  // Function to format price to Rupiah
+      if (error) {
+        console.error("Error deleting registrant:", error.message);
+      } else {
+        console.log("Registrant deleted successfully");
+        setDataPendaftar(
+          dataPendaftar.filter((pendaftar) => pendaftar.id !== deleteId)
+        );
+      }
+    } catch (error) {
+      console.error("Error deleting registrant:", error.message);
+    } finally {
+      onOpenChange(false); 
+    }
+  };
+
+  
   const formatRupiah = (amount) => {
     return new Intl.NumberFormat("id-ID", {
       style: "currency",
       currency: "IDR",
     }).format(amount);
   };
+
+  if (loading) {
+    return (
+      <main className="bg-[#E2E9C5] w-[450px] flex justify-center items-center min-h-screen">
+        <Spinner size="lg" />
+      </main>
+    );
+  }
 
   return (
     <main className="bg-[#E2E9C5] w-[450px] relative flex flex-col items-center p-6 min-h-screen">
@@ -71,12 +107,23 @@ export default function Admin() {
               {dataPendaftar.map((pendaftar) => (
                 <li
                   key={pendaftar.id}
-                  className="bg-white shadow-md rounded-lg p-4"
+                  className="relative bg-white shadow-md rounded-lg p-4"
                 >
+                  <div className="absolute top-2 right-2">
+                    <Button
+                      className="bg-red-500 hover:bg-red-600 active:bg-red-700"
+                      onClick={() => {
+                        setDeleteId(pendaftar.id);
+                        onOpen();
+                      }}
+                    >
+                      Aksi Delete
+                    </Button>
+                  </div>
                   <h2 className="text-lg font-semibold text-gray-800">
                     {pendaftar.daftar_nama}
                   </h2>
-                  <Divider />
+                  <Divider className="mt-2" />
                   <p className="text-gray-600">
                     <strong>Status:</strong>{" "}
                     <span className="capitalize">
@@ -92,6 +139,10 @@ export default function Admin() {
                     <strong>Dibuat Pada:</strong>{" "}
                     {new Date(pendaftar.daftar_created_at).toLocaleString()}
                   </p>
+                  <p className="text-gray-600">
+                    <strong>Total Pendaftar:</strong>{" "}
+                    {pendaftar.daftar_total_pendaftar}
+                  </p>
                 </li>
               ))}
             </ul>
@@ -100,6 +151,34 @@ export default function Admin() {
           )}
         </div>
       </div>
+
+      {/* Delete Confirmation Modal */}
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+        <ModalContent>
+          <ModalHeader>Delete Registrant</ModalHeader>
+          <Divider />
+          <ModalBody>
+            Apakah Anda Yakin Ingin Menghapus Pendaftar Tersebut?
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              className="bg-blue-500 hover:bg-blue-600 active:bg-blue-700"
+              auto
+              onClick={() => onOpenChange(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              className="bg-green-500 hover:bg-green-600 active:bg-green-700"
+              onClick={deleteRegistrant}
+              color="error"
+              auto
+            >
+              Delete
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </main>
   );
 }
