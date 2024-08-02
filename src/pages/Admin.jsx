@@ -236,24 +236,26 @@ export default function Admin() {
         </div>
       </div>
 
-      <Modal open={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
-          <ModalHeader>Konfirmasi Hapus</ModalHeader>
+          <ModalHeader>Delete Registrant</ModalHeader>
+          <Divider />
           <ModalBody>
-            Apakah Anda yakin ingin menghapus pendaftar ini?
+            Apakah Anda Yakin Ingin Menghapus Pendaftar Tersebut?
           </ModalBody>
           <ModalFooter>
             <Button
-              className="bg-gray-500 hover:bg-gray-600 active:bg-gray-700"
+              className="bg-blue-500 hover:bg-blue-600 active:bg-blue-700"
               auto
               onClick={() => onOpenChange(false)}
             >
               Cancel
             </Button>
             <Button
-              className="bg-red-500 hover:bg-red-600 active:bg-red-700"
-              auto
+              className="bg-green-500 hover:bg-green-600 active:bg-green-700"
               onClick={deleteRegistrant}
+              color="error"
+              auto
             >
               Delete
             </Button>
