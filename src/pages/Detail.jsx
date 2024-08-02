@@ -44,9 +44,7 @@ export default function Detail() {
   const audioRef = useRef(null);
   const navigate = useNavigate();
   const [isPlaying, setIsPlaying] = useState(false);
-  const scrollInterval = setInterval(function () {
-    window.scrollBy(0, 1000);
-  }, 2000);
+
 
   const [ref, inView] = useInView({
     triggerOnce: false,
@@ -80,15 +78,7 @@ export default function Detail() {
 
   const scrollRef = useRef(null);
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      if (scrollRef.current) {
-        scrollRef.current.scrollBy(0, 1000);
-      }
-    }, 2000);
-
-    return () => clearInterval(intervalId);
-  }, []);
+ 
   useEffect(() => {
     const playAudio = async () => {
       try {
@@ -305,7 +295,7 @@ export default function Detail() {
           ─ MINGGU, 1 SEPTEMBER 2024 ─
         </p>
         <div className="mt-4 w-full max-w-md px-4">
-          <h2 className="text-xl font-bold text-center mb-4" data-aos="zoom-in">
+          <h2 className="text-xl font-bold text-center mb-4" >
             Countdown:
           </h2>
           <div className="grid grid-cols-4 gap-3 md:grid-cols-2 lg:grid-cols-4 relative z-10">
@@ -385,9 +375,9 @@ export default function Detail() {
         <div className="mt-20"></div>
         <Image src="/ambalan.png" className="" width={250} />
         <div>
-          <h1 className="font-montserrat text-md text-center mt-8 text-[#3a3a3a] font-medium">
+          <h1 className="font-montserrat text-lg text-center mt-8 text-[#3a3a3a] font-medium">
             Merupakan Suatu Kebahagiaan dan Kehormatan bagi Kami, Apabila
-            Bapak/Ibu/Saudara/i, Berkenan Hadir di Acara kami
+            Bapak/Ibu/Saudara, Berkenan Hadir di Acara kami
           </h1>
 
           <p className="mt-12 text-center font-serif"> - Terima Kasih -</p>

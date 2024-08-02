@@ -137,7 +137,7 @@ export default function Admin() {
           <div className="bg-white shadow-md rounded-lg p-4 w-full">
             <h2 className="text-lg font-semibold text-gray-800 mb-2">Total Data</h2>
             <Divider className="mb-2" />
-            <p className="text-gray-600"><strong>Total Pendaftar:</strong> {totalRegistrants}</p>
+            <p className="text-gray-600"><strong>Total Pendaftar Per Group:</strong> {totalRegistrants}</p>
             <p className="text-gray-600"><strong>Total Hadir:</strong> {totalAttendance}</p>
             <p className="text-gray-600"><strong>Total Tidak Hadir:</strong> {totalAbsence}</p>
           </div>
@@ -145,7 +145,7 @@ export default function Admin() {
 
         {/* Sorting Options */}
         <div className="flex flex-col mb-6 w-full space-y-4">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center m-4">
             <div>
               <label htmlFor="sortField" className="mr-2 text-gray-700">Sort by:</label>
               <select
@@ -223,6 +223,9 @@ export default function Admin() {
                   </p>
                   <p className="text-gray-600">
                     <strong>Total:</strong> {formatRupiah(pendaftar.daftar_total_harga)}
+                  </p>
+                  <p className="text-gray-600">
+                    <strong>Total Pendaftar:</strong> {pendaftar.daftar_total_pendaftar}
                   </p>
                 </li>
               ))}

@@ -106,10 +106,7 @@ export default function Banner() {
             >
               Kepada
             </h1>
-            <p
-              className="font-serif text-[#E2E9C5] font-semibold text-3xl"
-              data-aos="zoom-in"
-            >
+            <p className="font-serif text-[#E2E9C5] font-semibold text-3xl">
               Alumni Pramuka
             </p>
 
