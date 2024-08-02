@@ -215,7 +215,7 @@ export default function Admin() {
                   <Divider className="mt-2" />
                   <p className="text-gray-600">
                     <strong>Status:</strong>{" "}
-                    <span className="text-gray-900">{pendaftar.daftar_kehadiran}</span>
+                    <span className="text-gray-900 capitalize">{pendaftar.daftar_kehadiran}</span>
                   </p>
                   <p className="text-gray-600">
                     <strong>Tanggal Daftar:</strong>{" "}
