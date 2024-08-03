@@ -86,21 +86,39 @@ export default function Admin() {
 
   const filteredAndSortedData = [...dataPendaftar]
     .filter((pendaftar) => {
-      if (sortAttendance === "hadir" && pendaftar.daftar_kehadiran !== "hadir") return false;
-      if (sortAttendance === "tidak hadir" && pendaftar.daftar_kehadiran !== "tidak hadir") return false;
+      if (sortAttendance === "hadir" && pendaftar.daftar_kehadiran !== "hadir")
+        return false;
+      if (
+        sortAttendance === "tidak hadir" &&
+        pendaftar.daftar_kehadiran !== "tidak hadir"
+      )
+        return false;
       return true;
     })
     .sort((a, b) => {
-      const fieldA = sortField === "name" ? a.daftar_nama :
-        (sortField === "date" ? new Date(a.daftar_created_at) :
-        (sortField === "attendance" ? a.daftar_kehadiran : undefined));
-      const fieldB = sortField === "name" ? b.daftar_nama :
-        (sortField === "date" ? new Date(b.daftar_created_at) :
-        (sortField === "attendance" ? b.daftar_kehadiran : undefined));
+      const fieldA =
+        sortField === "name"
+          ? a.daftar_nama
+          : sortField === "date"
+          ? new Date(a.daftar_created_at)
+          : sortField === "attendance"
+          ? a.daftar_kehadiran
+          : undefined;
+      const fieldB =
+        sortField === "name"
+          ? b.daftar_nama
+          : sortField === "date"
+          ? new Date(b.daftar_created_at)
+          : sortField === "attendance"
+          ? b.daftar_kehadiran
+          : undefined;
 
       if (sortField === "attendance") {
-        const attendancePriority = { "tidak hadir": 1, "hadir": 2 }; // Prioritas untuk kehadiran
-        return (attendancePriority[fieldA] - attendancePriority[fieldB]) * (sortOrder === "asc" ? 1 : -1);
+        const attendancePriority = { "tidak hadir": 1, hadir: 2 }; // Prioritas untuk kehadiran
+        return (
+          (attendancePriority[fieldA] - attendancePriority[fieldB]) *
+          (sortOrder === "asc" ? 1 : -1)
+        );
       }
 
       if (sortOrder === "asc") {
@@ -111,9 +129,16 @@ export default function Admin() {
     });
 
   const totalRegistrants = filteredAndSortedData.length;
-  const totalAttendance = filteredAndSortedData.filter(pendaftar => pendaftar.daftar_kehadiran === "hadir").length;
-  const totalAbsence = filteredAndSortedData.filter(pendaftar => pendaftar.daftar_kehadiran === "tidak hadir").length;
-  const totalRevenue = filteredAndSortedData.reduce((sum, pendaftar) => sum + pendaftar.daftar_total_harga, 0);
+  const totalAttendance = filteredAndSortedData.filter(
+    (pendaftar) => pendaftar.daftar_kehadiran === "hadir"
+  ).length;
+  const totalAbsence = filteredAndSortedData.filter(
+    (pendaftar) => pendaftar.daftar_kehadiran === "tidak hadir"
+  ).length;
+  const totalRevenue = filteredAndSortedData.reduce(
+    (sum, pendaftar) => sum + pendaftar.daftar_total_harga,
+    0
+  );
 
   if (loading) {
     return (
@@ -135,11 +160,19 @@ export default function Admin() {
       <div className="mt-16 w-full">
         <div className="flex flex-col items-center mb-6">
           <div className="bg-white shadow-md rounded-lg p-4 w-full">
-            <h2 className="text-lg font-semibold text-gray-800 mb-2">Total Data</h2>
+            <h2 className="text-lg font-semibold text-gray-800 mb-2">
+              Total Data
+            </h2>
             <Divider className="mb-2" />
-            <p className="text-gray-600"><strong>Total Pendaftar Per Group:</strong> {totalRegistrants}</p>
-            <p className="text-gray-600"><strong>Total Hadir:</strong> {totalAttendance}</p>
-            <p className="text-gray-600"><strong>Total Tidak Hadir:</strong> {totalAbsence}</p>
+            <p className="text-gray-600">
+              <strong>Total Pendaftar Per Group:</strong> {totalRegistrants}
+            </p>
+            <p className="text-gray-600">
+              <strong>Total Hadir:</strong> {totalAttendance}
+            </p>
+            <p className="text-gray-600">
+              <strong>Total Tidak Hadir:</strong> {totalAbsence}
+            </p>
           </div>
         </div>
 
@@ -147,7 +180,9 @@ export default function Admin() {
         <div className="flex flex-col mb-6 w-full space-y-4">
           <div className="flex justify-between items-center m-4">
             <div>
-              <label htmlFor="sortField" className="mr-2 text-gray-700">Sort by:</label>
+              <label htmlFor="sortField" className="mr-2 text-gray-700">
+                Sort by:
+              </label>
               <select
                 id="sortField"
                 value={sortField}
@@ -160,7 +195,9 @@ export default function Admin() {
               </select>
             </div>
             <div>
-              <label htmlFor="sortOrder" className="mr-2 text-gray-700">Order:</label>
+              <label htmlFor="sortOrder" className="mr-2 text-gray-700">
+                Order:
+              </label>
               <select
                 id="sortOrder"
                 value={sortOrder}
@@ -175,7 +212,9 @@ export default function Admin() {
 
           <div className="flex justify-between items-center">
             <div>
-              <label htmlFor="sortAttendance" className="mr-2 text-gray-700">Filter by Attendance:</label>
+              <label htmlFor="sortAttendance" className="mr-2 text-gray-700">
+                Filter by Attendance:
+              </label>
               <select
                 id="sortAttendance"
                 value={sortAttendance}
@@ -215,17 +254,25 @@ export default function Admin() {
                   <Divider className="mt-2" />
                   <p className="text-gray-600">
                     <strong>Status:</strong>{" "}
-                    <span className="text-gray-900 capitalize">{pendaftar.daftar_kehadiran}</span>
+                    <span className="text-gray-900 capitalize">
+                      {pendaftar.daftar_kehadiran}
+                    </span>
                   </p>
                   <p className="text-gray-600">
-                    <strong>Tanggal Daftar:</strong>{" "}
-                    <span className="text-gray-900">{new Date(pendaftar.daftar_created_at).toLocaleDateString()}</span>
+                    <p className="text-gray-600">
+                      <strong>Tanggal Daftar:</strong>{" "}
+                      {new Date(pendaftar.daftar_created_at).toLocaleString(
+                        "id-ID"
+                      )}
+                    </p>
                   </p>
                   <p className="text-gray-600">
-                    <strong>Total:</strong> {formatRupiah(pendaftar.daftar_total_harga)}
+                    <strong>Total:</strong>{" "}
+                    {formatRupiah(pendaftar.daftar_total_harga)}
                   </p>
                   <p className="text-gray-600">
-                    <strong>Total Pendaftar:</strong> {pendaftar.daftar_total_pendaftar}
+                    <strong>Total Pendaftar:</strong>{" "}
+                    {pendaftar.daftar_total_pendaftar}
                   </p>
                 </li>
               ))}
