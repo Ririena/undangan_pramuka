@@ -17,6 +17,11 @@ export default function Pelaksanaan() {
   });
 
   const position = [-7.01494, 107.65147];
+  const openGoogleMaps = () => {
+    const url = `https://www.google.com/maps?q=${position[0]},${position[1]}`;
+    window.open(url, "_blank");
+  };
+
   return (
     <>
       <div>
@@ -141,7 +146,7 @@ export default function Pelaksanaan() {
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 />
-                <Marker position={position}>
+                <Marker position={position} eventHandlers={{ click: openGoogleMaps }}>
                   <Popup>SMKN 7 BALEENDAH</Popup>
                   <Tooltip permanent direction="top">
                     SMKN 7 BALEENDAH
