@@ -77,7 +77,7 @@ export default function Pelaksanaan() {
                             Pukul:
                           </span>
                           <span className="font-montserrat font-medium text-[#E2E9C5]">
-                            07.00 Sampai Dengan Selesai
+                            07.30 Sampai Dengan Selesai
                           </span>
                         </div>
                       </td>
