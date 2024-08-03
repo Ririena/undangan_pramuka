@@ -45,7 +45,7 @@ export default function Pelaksanaan() {
                         <CalendarDays color="#E2E9C5" className="" />
                       </td>
                       <td className="font-montserrat font-medium text-[#E2E9C5]">
-                        Minggu, 25 Agustus 2024
+                        Minggu, 01 September 2024
                       </td>
                     </tr>
                     <tr>

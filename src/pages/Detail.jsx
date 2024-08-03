@@ -371,7 +371,7 @@ export default function Detail() {
         <div className="mt-20"></div>
         <Image src="/ambalan.png" className="" width={250} />
         <div>
-          <h1 className="font-montserrat text-lg text-center mt-8 text-[#3a3a3a] font-medium">
+        <h1 className="font-montserrat text-lg text-center mt-8 text-[#3a3a3a] font-medium">
             Merupakan Suatu Kehormatan dan Kebahagiaan bagi kami, apabila kakak
             kakak Purna Ambalan, Berkenan Hadir di acara Pandu Memories 2
           </h1>
