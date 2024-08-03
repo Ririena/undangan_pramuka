@@ -45,7 +45,6 @@ export default function Detail() {
   const navigate = useNavigate();
   const [isPlaying, setIsPlaying] = useState(false);
 
-
   const [ref, inView] = useInView({
     triggerOnce: false,
     threshold: 0.1,
@@ -78,7 +77,6 @@ export default function Detail() {
 
   const scrollRef = useRef(null);
 
- 
   useEffect(() => {
     const playAudio = async () => {
       try {
@@ -268,8 +266,8 @@ export default function Detail() {
           Pandu Memories 2, SMKN 7 BALEENDAH TAHUN 2024
         </h1> */}
         <div className="flex justify-center items-center mb-6">
-          <Card className="w-72 ">
-            <div className="flex justify-between m-4 ">
+          <Card className="w-72 bg-[#4B3A1C] text-[#E2E9C5] ">
+            <div className="flex justify-between m-4  ">
               <p>Pangkalan</p>
               <p>SMKN 7 BALEENDAH</p>
             </div>
@@ -295,9 +293,7 @@ export default function Detail() {
           ─ MINGGU, 1 SEPTEMBER 2024 ─
         </p>
         <div className="mt-4 w-full max-w-md px-4">
-          <h2 className="text-xl font-bold text-center mb-4" >
-            Countdown:
-          </h2>
+          <h2 className="text-xl font-bold text-center mb-4">Countdown:</h2>
           <div className="grid grid-cols-4 gap-3 md:grid-cols-2 lg:grid-cols-4 relative z-10">
             <div className="p-4 text-center shadow-md bg-[#3C4321] rounded-lg">
               <p className="text-xl font-bold text-gray-200">{timeLeft.days}</p>
@@ -376,8 +372,8 @@ export default function Detail() {
         <Image src="/ambalan.png" className="" width={250} />
         <div>
           <h1 className="font-montserrat text-lg text-center mt-8 text-[#3a3a3a] font-medium">
-            Merupakan Suatu Kebahagiaan dan Kehormatan bagi Kami, Apabila
-            Bapak/Ibu/Saudara, Berkenan Hadir di Acara kami
+            Merupakan Suatu Kehormatan dan Kebahagiaan bagi kami, apabila kakak
+            kakak Purna Ambalan, Berkenan Hadir di acara Pandu Memories 2
           </h1>
 
           <p className="mt-12 text-center font-serif"> - Terima Kasih -</p>

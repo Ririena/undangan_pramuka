@@ -22,45 +22,45 @@ export default function Pelaksanaan() {
               </h1>
             </Zoom>
           </div>
-          <Card className="relative w-96 h-[550px] bg-[#BD9E8B]">
+          <Card className="relative w-96 h-[550px] bg-[#4B3A1C] ">
             <section>
-              <div className="mt-10 text-gray-900">
-                <h1 className="text-center font-montserrat font-bold text-2xl text-black">
+              <div className="mt-10 text-[#E2E9C5]">
+                <h1 className="text-center font-montserrat font-bold text-2xl ">
                   Pandu Memories 2,
                 </h1>
-                <p className="text-center font-montserrat font-bold text-2xl text-black">
+                <p className="text-center font-montserrat font-bold text-2xl ">
                   SMKN 7 BALEENDAH
                 </p>
                 <Divider />
               </div>
-              <p className="text-center text-lg font-semibold mt-2 text-black">
+              <p className="text-center text-[#E2E9C5] text-lg font-semibold mt-2 ">
                 Detail Acara
               </p>
 
               <div className="whitespace-pre-wrap flex justify-center items-center m-4">
-                <table className="table-fixed w-full text-black">
+                <table className="table-fixed w-full ">
                   <tbody>
                     <tr>
                       <td>
-                        <CalendarDays />
+                        <CalendarDays color="#E2E9C5" className="" />
                       </td>
-                      <td className="font-montserrat font-medium text-black">
+                      <td className="font-montserrat font-medium text-[#E2E9C5]">
                         Minggu, 25 Agustus 2024
                       </td>
                     </tr>
                     <tr>
                       <td>
-                        <Timer />
+                        <Timer color="#E2E9C5" />
                       </td>
-                      <td className="font-montserrat font-medium text-black">
+                      <td className="font-montserrat font-medium  text-[#E2E9C5]">
                         07.00 Sampai Dengan Selesai
                       </td>
                     </tr>
                     <tr>
                       <td>
-                        <MapPinned />
+                        <MapPinned color="#E2E9C5" />
                       </td>
-                      <td className="font-montserrat font-medium text-black">
+                      <td className="font-montserrat font-medium text-[#E2E9C5]">
                         SMK NEGERI 7 BALEENDAH
                       </td>
                     </tr>

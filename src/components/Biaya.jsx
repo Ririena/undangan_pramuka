@@ -10,25 +10,24 @@ export default function Biaya() {
     <>
       <section className="w-[450px] relative flex flex-col items-center p-6 min-h-screen bg-[#E2E9C5]">
         <Slide duration={800} delay={100} direction="up">
-          <h1 className="font-montserrat text-4xl font-light mt-[100px] mb-6 text-center text-[#3a3a3a]">
+          <h1 className="font-montserrat text-4xl font-bold  mt-[100px] mb-6 text-center text-[#3a3a3a]">
             Biaya
           </h1>
         </Slide>
 
-          <Card className="w-[300px] bg-white p-6 shadow-lg rounded-lg border border-gray-300 mb-6">
-            <h2 className="font-montserrat text-lg text-center text-gray-700 mb-4">
-              Kakak kakak mohon bantuan untuk mengirimkan donasi sebesar Rp.
-              180.000 / orang (Kaos, Scraft, name tag, snack, makan dan
-              souvenir)
-            </h2>
-          </Card>
+        <Card className="w-[300px] bg-white p-6 shadow-lg rounded-lg border border-gray-300 mb-6">
+          <h2 className="font-montserrat text-lg text-center text-gray-700 mb-4">
+            Kakak kakak mohon bantuan untuk mengirimkan donasi sebesar Rp.
+            180.000 / orang (Kaos, Scraft, name tag, snack, makan dan souvenir)
+          </h2>
+        </Card>
 
-          <Card className="w-[300px] bg-white p-6 shadow-lg rounded-lg border border-gray-300 mb-6">
-            <h2 className="font-montserrat text-lg text-center text-gray-700 mb-4">
-              Apabila membawa istri/suami/anak maka donasi bertambah sebesar Rp.
-              35.000 per orang,- (makan, snack)
-            </h2>
-          </Card>
+        <Card className="w-[300px] bg-white p-6 shadow-lg rounded-lg border border-gray-300 mb-6">
+          <h2 className="font-montserrat text-lg text-center text-gray-700 mb-4">
+            Apabila membawa istri/suami/anak maka donasi bertambah sebesar Rp.
+            35.000 per orang,- (makan, snack)
+          </h2>
+        </Card>
 
         <Divider className="my-6 border-black border-1" />
 
@@ -37,7 +36,7 @@ export default function Biaya() {
             NARA HUBUNG
           </h2>
           <div className="grid grid-cols-1 gap-6">
-          <Card className="bg-white p-4 shadow-md rounded-lg border border-gray-200 flex flex-col items-center">
+            <Card className="bg-white p-4 shadow-md rounded-lg border border-gray-200 flex flex-col items-center">
               <img
                 src="/photo.png"
                 alt="Ajila Dwi Sastra"

@@ -22,7 +22,7 @@ export default function AgendaAcara() {
           duration={1000}
           className={inViewLeft ? "animate" : "animate-reverse"}
         >
-          <h1 className="font-montserrat text-4xl font-light mt-[100px] mb-6">
+          <h1 className="font-montserrat text-4xl font-bold text-[#3a3a3a] mt-[100px] mb-6">
             Agenda Acara
           </h1>
         </Zoom>
