@@ -28,15 +28,20 @@ export default function Gallery() {
             </Cardn>
           </Zoom>
 
-          <Zoom  triggerOnce={true} duration={1000} delay={1000} level={0.5}>
+          <Zoom triggerOnce={true} duration={1000} delay={1000} level={0.5}>
             <Cardn>
               <Image src="/ALBUM_3.jpg" alt="Album 3" />
             </Cardn>
           </Zoom>
-          <Zoom  triggerOnce={true} duration={1000} delay={1100} level={0.5}>
+          <Zoom triggerOnce={true} duration={1000} delay={1100} level={0.5}>
             <Cardn>
-              <Image src="/ALBUM_4.jpg" alt="Album 4" />
+              <Image src="/ALBUM_5.jpg" alt="Album 3" />
             </Cardn>
+          </Zoom>
+          <Zoom triggerOnce={true} duration={1000} delay={1200} level={0.5}>
+            <div>
+              <Image src="/ALBUM_4.jpg" alt="Album 4" />
+            </div>
           </Zoom>
         </section>
       </section>

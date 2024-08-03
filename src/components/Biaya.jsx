@@ -2,7 +2,6 @@ import React from "react";
 import { Card } from "@nextui-org/react";
 import { Button } from "./ui/button";
 import { Divider } from "@nextui-org/react";
-import { CreditCard } from "lucide-react";
 import { Slide } from "react-awesome-reveal";
 
 export default function Biaya() {
@@ -10,7 +9,7 @@ export default function Biaya() {
     <>
       <section className="w-[450px] relative flex flex-col items-center p-6 min-h-screen bg-[#E2E9C5]">
         <Slide duration={800} delay={100} direction="up">
-          <h1 className="font-montserrat text-4xl font-bold  mt-[100px] mb-6 text-center text-[#3a3a3a]">
+          <h1 className="font-montserrat text-4xl font-bold mt-[100px] mb-6 text-center text-[#3a3a3a]">
             Biaya
           </h1>
         </Slide>
@@ -79,21 +78,39 @@ export default function Biaya() {
             Rekening
           </h2>
           <div className="grid grid-cols-1 gap-6">
-            <Card className="bg-[#f3f6f9] p-4 shadow-md rounded-lg border border-[#c4c4c4] flex flex-col items-center hover:shadow-lg transition-shadow duration-300">
+            <Card className="bg-[#f3f6f9] p-4 shadow-md rounded-lg border border-[#c4c4c4] flex flex-col items-start hover:shadow-lg transition-shadow duration-300">
               <div className="flex items-center mb-3">
-                <CreditCard className="w-8 h-8 mr-2" />
-                <p className="font-montserrat text-lg text-gray-800">
-                  Rek 0115468170101 a.n Rani Prastuti, S.Pd
-                </p>
+                <img
+                  src="/bjb.png"
+                  alt="Bank BJB"
+                  className="w-12 h-12 mr-4"
+                />
+                <div className="flex flex-col">
+                  <p className="font-montserrat text-lg text-gray-800">
+                    Rek 0115468170101 a.n Rani Prastuti, S.Pd
+                  </p>
+                  <p className="font-montserrat text-md text-gray-600">
+                    Bank: BJB (Bank Jabar Banten)
+                  </p>
+                </div>
               </div>
             </Card>
 
-            <Card className="bg-[#f3f6f9] p-4 shadow-md rounded-lg border border-[#c4c4c4] flex flex-col items-center hover:shadow-lg transition-shadow duration-300">
+            <Card className="bg-[#f3f6f9] p-4 shadow-md rounded-lg border border-[#c4c4c4] flex flex-col items-start hover:shadow-lg transition-shadow duration-300">
               <div className="flex items-center mb-3">
-                <CreditCard className="w-8 h-8 mr-2" />
-                <p className="font-montserrat text-lg text-gray-800">
-                  Rek 7045171108 a.n Daniel Rizkyawan
-                </p>
+                <img
+                  src="/bca.svg"
+                  alt="Bank BCA"
+                  className="w-12 h-12 mr-4"
+                />
+                <div className="flex flex-col">
+                  <p className="font-montserrat text-lg text-gray-800">
+                    Rek 7045171108 a.n Daniel Rizkyawan
+                  </p>
+                  <p className="font-montserrat text-md text-gray-600">
+                    Bank: BCA (Bank Central Asia)
+                  </p>
+                </div>
               </div>
             </Card>
           </div>

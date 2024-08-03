@@ -266,26 +266,23 @@ export default function Detail() {
           Pandu Memories 2, SMKN 7 BALEENDAH TAHUN 2024
         </h1> */}
         <div className="flex justify-center items-center mb-6">
-          <Card className="w-72 bg-[#4B3A1C] text-[#E2E9C5] ">
-            <div className="flex justify-between m-4  ">
-              <p>Pangkalan</p>
-              <p>SMKN 7 BALEENDAH</p>
+          <Card className="w-[370px] bg-[#4B3A1C] text-[#E2E9C5]">
+            <div className="flex flex-col justify-center items-center m-4">
+              <p className="text-center">GERAKAN PRAMUKA</p>
             </div>
-            <div className="flex justify-between m-4 ">
-              <p>Gugus Depan</p>
+            <div className="flex justify-center items-center gap-4 m-4">
+              <p>GUGUS DEPAN</p>
               <p>11.157 - 11.158</p>
             </div>
-
-            <div className="flex justify-between m-4 ">
-              <p>Ambalan</p>
-              <p>RAA. Wiranata Kusumah</p>
+            <div className="flex justify-center items-center m-4">
+              <p className="text-center">PANGKALAN SMK NEGERI 7 BALEENDAH</p>
             </div>
-            <div className="flex justify-between m-4 ">
-              <p>.</p>
-              <p className="">RD. Dewi Sartika</p>
+            <div className="flex justify-center items-center m-4">
+              <p>RAA WIRANATA KUSUMAH - RD DEWI SARTIKA</p>
             </div>
           </Card>
         </div>
+
         <p
           data-aos="zoom-in"
           className="font-violet font-semibold font-lg mt-2"
@@ -371,7 +368,7 @@ export default function Detail() {
         <div className="mt-20"></div>
         <Image src="/ambalan.png" className="" width={250} />
         <div>
-        <h1 className="font-montserrat text-lg text-center mt-8 text-[#3a3a3a] font-medium">
+          <h1 className="font-montserrat text-lg text-center mt-8 text-[#3a3a3a] font-medium">
             Merupakan Suatu Kehormatan dan Kebahagiaan bagi kami, apabila kakak
             kakak Purna Ambalan, Berkenan Hadir di acara Pandu Memories 2
           </h1>
