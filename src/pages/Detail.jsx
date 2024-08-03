@@ -266,7 +266,7 @@ export default function Detail() {
           Pandu Memories 2, SMKN 7 BALEENDAH TAHUN 2024
         </h1> */}
         <div className="flex justify-center items-center mb-6">
-          <Card className="w-[370px] bg-[#4B3A1C] text-[#E2E9C5]">
+          <Card className="w-[400px] bg-[#4B3A1C] text-[#E2E9C5]">
             <div className="flex flex-col justify-center items-center m-4">
               <p className="text-center">GERAKAN PRAMUKA</p>
             </div>
