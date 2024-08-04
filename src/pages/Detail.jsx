@@ -139,6 +139,14 @@ export default function Detail() {
 
   const handleSave = async (e) => {
     e.preventDefault();
+    if (!name || !selectedStatus || !numberOfPeople) {
+      toast({
+        title: "Error",
+        description: "Semua Field Harus Diisi!!!",
+        variant: "destructive",
+      });
+      return;
+    }
 
     const newData = {
       daftar_nama: name,
@@ -159,8 +167,8 @@ export default function Detail() {
         variant: "success",
       });
       setTimeout(() => {
-        navigate(0); // This will refresh the current page
-      }, 1500); // 5000 milliseconds = 5 seconds
+        navigate(0); 
+      }, 1500); 
     }
   };
 
@@ -209,10 +217,13 @@ export default function Detail() {
 
   return (
     <>
-     <Helmet>
+      <Helmet>
         <title>Pandu Memories 2 - Detail</title>
         <link rel="canonical" href="https://pandu-memories-2.vercel.app/" />
-        <meta name="description" content="Detail page for the Pramuka event at SMKN 7 Baleendah" />
+        <meta
+          name="description"
+          content="Detail page for the Pramuka event at SMKN 7 Baleendah"
+        />
         <meta
           name="keywords"
           content="Pandu Memories 2, Vercel App, vercel app, pandu memories 2 vercel app, pandu memories 2, Reuni, Alumni, Pramuka, SMKN 7 Baleendah"
