@@ -8,6 +8,8 @@ import Detail from "./pages/Detail";
 import HomeLayout from "./layout/HomeLayout";
 import Admin from "./pages/Admin";
 import Login from "./pages/Login";
+import { Helmet, HelmetProvider } from "react-helmet-async";
+
 function App() {
   const [count, setCount] = useState(0);
 
@@ -22,22 +24,24 @@ function App() {
 
   return (
     <>
-      <div className="wrapper">
-        <Routes>
-          <Route path="/" element={<HomeWithLayout />}>
-            <Route index element={<Cover />} />
-            <Route path="detail">
-              <Route index element={<Detail />} />
+      <HelmetProvider>
+        <div className="wrapper">
+          <Routes>
+            <Route path="/" element={<HomeWithLayout />}>
+              <Route index element={<Cover />} />
+              <Route path="detail">
+                <Route index element={<Detail />} />
+              </Route>
+              <Route path="admin">
+                <Route index element={<Admin />} />
+              </Route>
+              <Route path="login">
+                <Route index element={<Login />} />
+              </Route>
             </Route>
-            <Route path="admin">
-              <Route index element={<Admin />} />
-            </Route>
-            <Route path="login">
-              <Route index element={<Login />} />
-            </Route>
-          </Route>
-        </Routes>
-      </div>
+          </Routes>
+        </div>
+      </HelmetProvider>
     </>
   );
 }

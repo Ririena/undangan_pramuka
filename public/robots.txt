@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pandu-memories-2.vercel.app/

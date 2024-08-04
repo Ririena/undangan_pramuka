@@ -4,7 +4,7 @@ import { Image } from "@nextui-org/image";
 import { motion } from "framer-motion";
 import { useToast } from "@/components/ui/use-toast";
 import { useNavigate } from "react-router-dom";
-
+import { Helmet } from "react-helmet-async";
 import "aos/dist/aos.css";
 import AOS from "aos";
 import { Divider } from "@nextui-org/react";
@@ -209,6 +209,15 @@ export default function Detail() {
 
   return (
     <>
+     <Helmet>
+        <title>Pandu Memories 2 - Detail</title>
+        <link rel="canonical" href="https://pandu-memories-2.vercel.app/" />
+        <meta name="description" content="Detail page for the Pramuka event at SMKN 7 Baleendah" />
+        <meta
+          name="keywords"
+          content="Pandu Memories 2, Vercel App, vercel app, pandu memories 2 vercel app, pandu memories 2, Reuni, Alumni, Pramuka, SMKN 7 Baleendah"
+        />
+      </Helmet>
       <audio
         ref={audioRef}
         src="/pramuka.mp3"

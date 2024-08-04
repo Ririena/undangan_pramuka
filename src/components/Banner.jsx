@@ -7,7 +7,7 @@ import "aos/dist/aos.css";
 import AOS from "aos";
 import { useNavigate } from "react-router-dom";
 import { Spinner } from "@nextui-org/react";
-
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 export default function Banner() {
   const [loading, setLoading] = useState(true);
 
@@ -27,6 +27,15 @@ export default function Banner() {
 
   return (
     <>
+    <Helmet>
+    <title>Pandu Memories 2</title>
+        <link rel="canonical" href="https://pandu-memories-2.vercel.app/" />
+        <meta name="description" content="Sebuah Undangan Reuni Alumni Pramuka SMKN 7 BALEENDAH, Pandu Memories 2 " />
+        <meta
+          name="keywords"
+          content="Pandu Memories 2, Vercel App, vercel app, pandu memories 2 vercel app, pandu memories 2, Reuni, Alumni, Pramuka, SMKN 7 Baleendah"
+        />
+    </Helmet>
       {loading ? (
         <div className="coverbg">
           <section className="w-[450px] relative flex flex-col min-h-screen items-center p-6">
