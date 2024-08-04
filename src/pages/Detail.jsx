@@ -33,6 +33,8 @@ import Gallery from "@/components/Gallery";
 import Pelaksanaan from "@/components/Pelaksanaan";
 export default function Detail() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [isInputVisible, setIsInputVisible] = useState(true);
+  const [isTotalPriceVisible, setIsTotalPriceVisible] = useState(true);
   const [modalImage, setModalImage] = useState("");
   const [autoScroll, setAutoScroll] = useState(true);
   const containerRef = useRef(null);
@@ -137,8 +139,20 @@ export default function Detail() {
     setTotalPrice(180000 + (validNumberOfPeople - 1) * 35000);
   }, [numberOfPeople]);
 
+  useEffect(() => {
+    // Control visibility based on selectedStatus
+    if (selectedStatus === "tidak hadir") {
+      setIsInputVisible(false);
+      setIsTotalPriceVisible(false);
+    } else {
+      setIsInputVisible(true);
+      setIsTotalPriceVisible(true);
+    }
+  }, [selectedStatus]);
+
   const handleSave = async (e) => {
     e.preventDefault();
+
     if (!name || !selectedStatus || !numberOfPeople) {
       toast({
         title: "Error",
@@ -481,30 +495,42 @@ export default function Detail() {
                       {(status) => <SelectItem>{status.label}</SelectItem>}
                     </Select>
 
-                    <label
-                      htmlFor="numberOfPeople"
-                      className="block text-sm font-medium mb-2"
-                    >
-                      Jumlah Orang
-                    </label>
-                    <Input
-                      isRequired
-                      id="numberOfPeople"
-                      type="number"
-                      min="1"
-                      fullWidth
-                      placeholder="Jumlah Orang"
-                      className="mb-4"
-                      value={numberOfPeople}
-                      onChange={(e) =>
-                        setNumberOfPeople(parseInt(e.target.value))
-                      }
-                    />
+                    {isInputVisible && (
+                      <label
+                        htmlFor="numberOfPeople"
+                        className="block text-sm font-medium mb-2"
+                      >
+                        Jumlah Orang
+                      </label>
+                    )}
+
+                    {isInputVisible && (
+                      <Input
+                        isRequired
+                        id="numberOfPeople"
+                        type="number"
+                        min="1"
+                        fullWidth
+                        placeholder="Jumlah Orang"
+                        className="mb-4"
+                        value={numberOfPeople}
+                        onChange={(e) =>
+                          setNumberOfPeople(parseInt(e.target.value))
+                        }
+                      />
+                    )}
+
                     <div className="flex justify-between items-center mb-4">
-                      <span className="text-lg font-bold">Total Harga:</span>
-                      <span className="text-lg font-bold">
-                        Rp {totalPrice.toLocaleString()}
-                      </span>
+                      {isTotalPriceVisible && (
+                        <>
+                          <span className="text-lg font-bold">
+                            Total Harga:
+                          </span>
+                          <span className="text-lg font-bold">
+                            Rp {totalPrice.toLocaleString()}
+                          </span>
+                        </>
+                      )}
                     </div>
                     <Button
                       type="submit"

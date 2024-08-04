@@ -19,7 +19,7 @@ export default function Admin() {
   const [deleteId, setDeleteId] = useState(null);
   const [sortField, setSortField] = useState("name");
   const [sortOrder, setSortOrder] = useState("asc");
-  const [sortAttendance, setSortAttendance] = useState(""); // New state for sorting by attendance
+  const [sortAttendance, setSortAttendance] = useState(""); // State untuk sort by attendance
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const navigate = useNavigate();
 
@@ -128,17 +128,22 @@ export default function Admin() {
       }
     });
 
-  const totalRegistrants = filteredAndSortedData.length;
+  const totalRegistrants = filteredAndSortedData.filter(
+    (pendaftar) => pendaftar.daftar_kehadiran === "hadir"
+  ).length;
+
   const totalAttendance = filteredAndSortedData.filter(
     (pendaftar) => pendaftar.daftar_kehadiran === "hadir"
   ).length;
   const totalAbsence = filteredAndSortedData.filter(
     (pendaftar) => pendaftar.daftar_kehadiran === "tidak hadir"
   ).length;
-  const totalRevenue = filteredAndSortedData.reduce(
-    (sum, pendaftar) => sum + pendaftar.daftar_total_harga,
-    0
-  );
+  const totalRevenue = filteredAndSortedData
+    .filter((pendaftar) => pendaftar.daftar_kehadiran === "hadir")
+    .reduce((sum, pendaftar) => {
+      const harga = parseFloat(pendaftar.daftar_total_harga) || 0; // Convert to number
+      return sum + harga;
+    }, 0);
 
   if (loading) {
     return (
@@ -172,6 +177,9 @@ export default function Admin() {
             </p>
             <p className="text-gray-600">
               <strong>Total Tidak Hadir:</strong> {totalAbsence}
+            </p>
+            <p className="text-gray-600">
+              <strong>Total Dana:</strong> {formatRupiah(totalRevenue)}
             </p>
           </div>
         </div>
@@ -237,48 +245,55 @@ export default function Admin() {
                   key={pendaftar.id}
                   className="relative bg-white shadow-md rounded-lg p-4"
                 >
-                  <div className="absolute top-2 right-2">
-                    <Button
-                      className="bg-red-500 hover:bg-red-600 active:bg-red-700"
-                      onClick={() => {
-                        setDeleteId(pendaftar.id);
-                        onOpen();
-                      }}
-                    >
-                      Aksi Delete
-                    </Button>
-                  </div>
-                  <h2 className="text-lg font-semibold text-gray-800">
+                  <h2 className="text-lg font-semibold">
                     {pendaftar.daftar_nama}
                   </h2>
-                  <Divider className="mt-2" />
+                  <Divider className="mt-1" />
                   <p className="text-gray-600">
-                    <strong>Status:</strong>{" "}
-                    <span className="text-gray-900 capitalize">
-                      {pendaftar.daftar_kehadiran}
-                    </span>
+                    Tanggal Daftar:{" "}
+                    {new Date(pendaftar.daftar_created_at).toLocaleString(
+                      "id-ID",
+                      {
+                        year: "numeric",
+                        month: "numeric",
+                        day: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        second: "2-digit",
+                      }
+                    )}
                   </p>
-                  <p className="text-gray-600">
-                    <p className="text-gray-600">
-                      <strong>Tanggal Daftar:</strong>{" "}
-                      {new Date(pendaftar.daftar_created_at).toLocaleString(
-                        "id-ID"
-                      )}
+                  {pendaftar.daftar_kehadiran === "hadir" && (
+                    <>
+                      <p className="text-gray-600">
+                        Harga: {formatRupiah(pendaftar.daftar_total_harga)}
+                      </p>
+                    </>
+                  )}
+
+                  <p className="text-gray-600 capitalize">
+                    Kehadiran: {pendaftar.daftar_kehadiran}
+                  </p>
+                  {pendaftar.daftar_kehadiran === "hadir" && (
+                    <p className="text-gray-600 capitalize">
+                      Total Pendaftar: {pendaftar.daftar_total_pendaftar}
                     </p>
-                  </p>
-                  <p className="text-gray-600">
-                    <strong>Total:</strong>{" "}
-                    {formatRupiah(pendaftar.daftar_total_harga)}
-                  </p>
-                  <p className="text-gray-600">
-                    <strong>Total Pendaftar:</strong>{" "}
-                    {pendaftar.daftar_total_pendaftar}
-                  </p>
+                  )}
+                  <Divider className="mb-4" />
+                  <Button
+                    className="w-full bg-red-500 hover:bg-red-600 active:bg-red-700"
+                    onClick={() => {
+                      setDeleteId(pendaftar.id);
+                      onOpen();
+                    }}
+                  >
+                    Aksi Delete
+                  </Button>
                 </li>
               ))}
             </ul>
           ) : (
-            <p className="text-gray-600">No data available</p>
+            <p>No registrants found.</p>
           )}
         </div>
       </div>
