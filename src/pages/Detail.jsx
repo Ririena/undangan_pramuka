@@ -167,8 +167,8 @@ export default function Detail() {
         variant: "success",
       });
       setTimeout(() => {
-        navigate(0); 
-      }, 1500); 
+        navigate(0);
+      }, 1500);
     }
   };
 
@@ -454,6 +454,7 @@ export default function Detail() {
                       Nama Lengkap
                     </label>
                     <Input
+                      isRequired
                       id="name"
                       fullWidth
                       clearable
@@ -469,6 +470,7 @@ export default function Detail() {
                       Status Kehadiran
                     </label>
                     <Select
+                      isRequired
                       value={selectedStatus}
                       onChange={(e) => setSelectedStatus(e.target.value)}
                       items={status}
@@ -486,6 +488,7 @@ export default function Detail() {
                       Jumlah Orang
                     </label>
                     <Input
+                      isRequired
                       id="numberOfPeople"
                       type="number"
                       min="1"
