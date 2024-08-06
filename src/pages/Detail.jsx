@@ -23,7 +23,7 @@ import {
   ModalFooter,
   useDisclosure,
 } from "@nextui-org/react";
-import { status } from "./../json/data";
+import { angkatan, status } from "./../json/data";
 import { supabase } from "@/config/supabase";
 import { Description } from "@radix-ui/react-toast";
 import { useInView } from "react-intersection-observer";
@@ -39,6 +39,7 @@ export default function Detail() {
   const [autoScroll, setAutoScroll] = useState(true);
   const containerRef = useRef(null);
   const [selectedStatus, setSelectedStatus] = useState("");
+  const [selectedAngkatan, setSelectedAngkatan] = useState("");
   const [name, setName] = useState("");
   const [numberOfPeople, setNumberOfPeople] = useState(1);
   const [totalPrice, setTotalPrice] = useState(180000);
@@ -167,6 +168,7 @@ export default function Detail() {
       daftar_kehadiran: selectedStatus,
       daftar_total_harga: totalPrice,
       daftar_total_pendaftar: numberOfPeople,
+      daftar_angkatan_tahun: selectedAngkatan
     };
 
     const { data, error } = await supabase
@@ -477,6 +479,23 @@ export default function Detail() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                     />
+                     <label
+                      htmlFor="name"
+                      className="block text-sm font-medium mb-2"
+                    >
+                      Angkatan Tahun
+                    </label>
+                    <Select
+                      isRequired
+                      value={selectedAngkatan}
+                      onChange={(e) => setSelectedAngkatan(e.target.value)}
+                      items={angkatan}
+                      label="Angkatan"
+                      placeholder="Angkatan Tahun"
+                      className="max-w-full mb-2"
+                    >
+                      {(status) => <SelectItem>{status.label}</SelectItem>}
+                    </Select>
                     <label
                       htmlFor="status"
                       className="block text-sm font-medium mb-2"

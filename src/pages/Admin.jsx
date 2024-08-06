@@ -22,6 +22,7 @@ export default function Admin() {
   const [sortAttendance, setSortAttendance] = useState(""); // State untuk sort by attendance
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const navigate = useNavigate();
+  const [yearFilter, setYearFilter] = useState("");
 
   useEffect(() => {
     async function fetchRegistrants() {
@@ -93,6 +94,12 @@ export default function Admin() {
         pendaftar.daftar_kehadiran !== "tidak hadir"
       )
         return false;
+      if (
+        yearFilter &&
+        pendaftar.daftar_angkatan_tahun &&
+        pendaftar.daftar_angkatan_tahun.toString() !== yearFilter
+      )
+        return false;
       return true;
     })
     .sort((a, b) => {
@@ -145,6 +152,13 @@ export default function Admin() {
       return sum + harga;
     }, 0);
 
+  const totalPendaftarHadir = filteredAndSortedData
+    .filter((pendaftar) => pendaftar.daftar_kehadiran === "hadir")
+    .reduce((sum, pendaftar) => {
+      const totalPendaftar = parseInt(pendaftar.daftar_total_pendaftar) || 0;
+      return sum + totalPendaftar;
+    }, 0);
+
   if (loading) {
     return (
       <main className="bg-[#E2E9C5] w-[450px] flex justify-center items-center min-h-screen">
@@ -173,20 +187,27 @@ export default function Admin() {
               <strong>Total Pendaftar Per Group:</strong> {totalRegistrants}
             </p>
             <p className="text-gray-600">
-              <strong>Total Hadir:</strong> {totalAttendance}
+              <strong>Total Pendaftar Keseluruhan:</strong>{" "}
+              {totalPendaftarHadir}
             </p>
             <p className="text-gray-600">
-              <strong>Total Tidak Hadir:</strong> {totalAbsence}
+              <strong>Total Dana Keseluruhan:</strong>{" "}
+              {formatRupiah(totalRevenue)}
             </p>
             <p className="text-gray-600">
-              <strong>Total Dana:</strong> {formatRupiah(totalRevenue)}
+              <strong>Total Hadir(Per Group):</strong> {totalAttendance}
+            </p>
+            <p className="text-gray-600">
+              <strong>Total Tidak Hadir(Per Group):</strong> {totalAbsence}
             </p>
           </div>
         </div>
 
         {/* Sorting Options */}
-        <div className="flex flex-col mb-6 w-full space-y-4">
-          <div className="flex justify-between items-center m-4">
+        <div className="bg-white shadow-md rounded-lg p-4 mb-6">
+          <h2 className="text-lg font-semibold text-gray-800 mb-2">Sorting</h2>
+          <Divider className="mb-2" />
+          <div className="flex justify-between items-center">
             <div>
               <label htmlFor="sortField" className="mr-2 text-gray-700">
                 Sort by:
@@ -217,11 +238,10 @@ export default function Admin() {
               </select>
             </div>
           </div>
-
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center mt-2">
             <div>
               <label htmlFor="sortAttendance" className="mr-2 text-gray-700">
-                Filter by Attendance:
+                Attendance:
               </label>
               <select
                 id="sortAttendance"
@@ -233,6 +253,19 @@ export default function Admin() {
                 <option value="hadir">Hadir</option>
                 <option value="tidak hadir">Tidak Hadir</option>
               </select>
+            </div>
+            <div>
+              <label htmlFor="yearFilter" className="mr-2 text-gray-700">
+                Filter by Angkatan:
+              </label>
+              <input
+                type="number"
+                id="yearFilter"
+                value={yearFilter}
+                onChange={(e) => setYearFilter(e.target.value)}
+                className="bg-white border border-gray-300 rounded-lg p-2"
+                placeholder="Enter year"
+              />
             </div>
           </div>
         </div>
@@ -249,6 +282,12 @@ export default function Admin() {
                     {pendaftar.daftar_nama}
                   </h2>
                   <Divider className="mt-1" />
+                  <p className="text-gray-600">
+                    Angkatan Tahun:{" "}
+                    {pendaftar.daftar_angkatan_tahun
+                      ? pendaftar.daftar_angkatan_tahun
+                      : "-"}
+                  </p>
                   <p className="text-gray-600">
                     Tanggal Daftar:{" "}
                     {new Date(pendaftar.daftar_created_at).toLocaleString(
