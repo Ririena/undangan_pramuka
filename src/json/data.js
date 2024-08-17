@@ -23,3 +23,10 @@ export const angkatan = [
   { key: "2023", label: "2023" },
   { key: "2024", label: "2024" },
 ];
+
+export const ukuranBaju = [
+  {key: "M", label: "M"},
+  {key: "L", label: "L"},
+  {key: "XL", label: "XL"},
+  {key: "XXL", label: "XXL"}
+]

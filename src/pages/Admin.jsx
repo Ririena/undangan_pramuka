@@ -33,6 +33,7 @@ export default function Admin() {
           console.error("Error fetching registrants:", error.message);
         } else {
           setDataPendaftar(data);
+          console.log(data);
           setLoading(false);
         }
       } catch (error) {
@@ -318,6 +319,17 @@ export default function Admin() {
                       Total Pendaftar: {pendaftar.daftar_total_pendaftar}
                     </p>
                   )}
+                  {pendaftar.daftar_kehadiran === "hadir" && (
+                    <>
+                      <p className="text-gray-600 capitalize">
+                        Ukuran Baju:{" "}
+                        {pendaftar.daftar_ukuran_baju
+                          ? pendaftar.daftar_ukuran_baju
+                          : "-"}
+                      </p>
+                    </>
+                  )}
+
                   <Divider className="mb-4" />
                   <Button
                     className="w-full bg-red-500 hover:bg-red-600 active:bg-red-700"
@@ -353,7 +365,7 @@ export default function Admin() {
               Cancel
             </Button>
             <Button
-              className="bg-green-500 hover:bg-green-600 active:bg-green-700"
+              className="bg-red-500 hover:bg-red-600 active:bg-red-700"
               onClick={deleteRegistrant}
               color="error"
               auto

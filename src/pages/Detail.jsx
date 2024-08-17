@@ -23,7 +23,7 @@ import {
   ModalFooter,
   useDisclosure,
 } from "@nextui-org/react";
-import { angkatan, status } from "./../json/data";
+import { angkatan, status, ukuranBaju } from "./../json/data";
 import { supabase } from "@/config/supabase";
 import { Description } from "@radix-ui/react-toast";
 import { useInView } from "react-intersection-observer";
@@ -43,7 +43,7 @@ export default function Detail() {
   const [name, setName] = useState("");
   const [numberOfPeople, setNumberOfPeople] = useState(1);
   const [totalPrice, setTotalPrice] = useState(180000);
-
+  const [selectedSize, setSelectedSize] = useState("");
   const audioRef = useRef(null);
   const navigate = useNavigate();
   const [isPlaying, setIsPlaying] = useState(false);
@@ -154,7 +154,7 @@ export default function Detail() {
   const handleSave = async (e) => {
     e.preventDefault();
 
-    if (!name || !selectedStatus || !numberOfPeople) {
+    if (!name || !selectedStatus || !numberOfPeople || !selectedSize) {
       toast({
         title: "Error",
         description: "Semua Field Harus Diisi!!!",
@@ -162,13 +162,13 @@ export default function Detail() {
       });
       return;
     }
-
     const newData = {
       daftar_nama: name,
       daftar_kehadiran: selectedStatus,
       daftar_total_harga: totalPrice,
       daftar_total_pendaftar: numberOfPeople,
-      daftar_angkatan_tahun: selectedAngkatan
+      daftar_angkatan_tahun: selectedAngkatan,
+      daftar_ukuran_baju: selectedSize,
     };
 
     const { data, error } = await supabase
@@ -479,7 +479,7 @@ export default function Detail() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                     />
-                     <label
+                    <label
                       htmlFor="name"
                       className="block text-sm font-medium mb-2"
                     >
@@ -537,6 +537,30 @@ export default function Detail() {
                           setNumberOfPeople(parseInt(e.target.value))
                         }
                       />
+                    )}
+
+                    {isInputVisible && (
+                      <>
+                        <label
+                          htmlFor="ukuranBaju"
+                          className="block text-sm font-medium mb-2"
+                        >
+                          Ukuran Baju(Hanya Pendaftar)
+                        </label>
+
+                        <Select
+                          isRequired
+                          label="Pilih Ukuran Baju"
+                          placeholder="Pilih ukuran"
+                          onChange={(e) => setSelectedSize(e.target.value)}
+                          items={ukuranBaju}
+                          value={selectedSize}
+                        >
+                          {(ukuranBaju) => (
+                            <SelectItem>{ukuranBaju.label}</SelectItem>
+                          )}
+                        </Select>
+                      </>
                     )}
 
                     <div className="flex justify-between items-center mb-4">
