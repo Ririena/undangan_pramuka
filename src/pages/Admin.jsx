@@ -23,6 +23,7 @@ export default function Admin() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const navigate = useNavigate();
   const [yearFilter, setYearFilter] = useState("");
+  const [shirtSizeFilter, setShirtSizeFilter] = useState("");
 
   useEffect(() => {
     async function fetchRegistrants() {
@@ -87,54 +88,71 @@ export default function Admin() {
   };
 
   const filteredAndSortedData = [...dataPendaftar]
-    .filter((pendaftar) => {
-      if (sortAttendance === "hadir" && pendaftar.daftar_kehadiran !== "hadir")
-        return false;
-      if (
-        sortAttendance === "tidak hadir" &&
-        pendaftar.daftar_kehadiran !== "tidak hadir"
-      )
-        return false;
-      if (
-        yearFilter &&
-        pendaftar.daftar_angkatan_tahun &&
-        pendaftar.daftar_angkatan_tahun.toString() !== yearFilter
-      )
-        return false;
-      return true;
-    })
-    .sort((a, b) => {
-      const fieldA =
-        sortField === "name"
-          ? a.daftar_nama
-          : sortField === "date"
-          ? new Date(a.daftar_created_at)
-          : sortField === "attendance"
-          ? a.daftar_kehadiran
-          : undefined;
-      const fieldB =
-        sortField === "name"
-          ? b.daftar_nama
-          : sortField === "date"
-          ? new Date(b.daftar_created_at)
-          : sortField === "attendance"
-          ? b.daftar_kehadiran
-          : undefined;
+  .filter((pendaftar) => {
+    // Filter by attendance
+    if (sortAttendance === "hadir" && pendaftar.daftar_kehadiran !== "hadir")
+      return false;
+    if (
+      sortAttendance === "tidak hadir" &&
+      pendaftar.daftar_kehadiran !== "tidak hadir"
+    )
+      return false;
 
-      if (sortField === "attendance") {
-        const attendancePriority = { "tidak hadir": 1, hadir: 2 }; // Prioritas untuk kehadiran
-        return (
-          (attendancePriority[fieldA] - attendancePriority[fieldB]) *
-          (sortOrder === "asc" ? 1 : -1)
-        );
-      }
+    // Filter by year
+    if (
+      yearFilter &&
+      pendaftar.daftar_angkatan_tahun &&
+      pendaftar.daftar_angkatan_tahun.toString() !== yearFilter
+    )
+      return false;
 
-      if (sortOrder === "asc") {
-        return fieldA > fieldB ? 1 : -1;
-      } else {
-        return fieldA < fieldB ? 1 : -1;
-      }
-    });
+    // Filter by shirt size
+    if (
+      shirtSizeFilter &&
+      pendaftar.daftar_ukuran_baju &&
+      pendaftar.daftar_ukuran_baju !== shirtSizeFilter
+    )
+      return false;
+
+    return true;
+  })
+  .sort((a, b) => {
+    const fieldA =
+      sortField === "name"
+        ? a.daftar_nama
+        : sortField === "date"
+        ? new Date(a.daftar_created_at)
+        : sortField === "attendance"
+        ? a.daftar_kehadiran
+        : sortField === "shirtSize"
+        ? a.daftar_ukuran_baju
+        : undefined;
+    const fieldB =
+      sortField === "name"
+        ? b.daftar_nama
+        : sortField === "date"
+        ? new Date(b.daftar_created_at)
+        : sortField === "attendance"
+        ? b.daftar_kehadiran
+        : sortField === "shirtSize"
+        ? b.daftar_ukuran_baju
+        : undefined;
+
+    if (sortField === "attendance") {
+      const attendancePriority = { "tidak hadir": 1, hadir: 2 }; // Prioritas untuk kehadiran
+      return (
+        (attendancePriority[fieldA] - attendancePriority[fieldB]) *
+        (sortOrder === "asc" ? 1 : -1)
+      );
+    }
+
+    if (sortOrder === "asc") {
+      return fieldA > fieldB ? 1 : -1;
+    } else {
+      return fieldA < fieldB ? 1 : -1;
+    }
+  });
+
 
   const totalRegistrants = filteredAndSortedData.filter(
     (pendaftar) => pendaftar.daftar_kehadiran === "hadir"
@@ -224,6 +242,24 @@ export default function Admin() {
                 <option value="attendance">Attendance</option>
               </select>
             </div>
+            <div>
+              <label htmlFor="shirtSizeFilter" className="mr-2 text-gray-700">
+                Baju
+              </label>
+              <select
+                id="shirtSizeFilter"
+                value={shirtSizeFilter}
+                onChange={(e) => setShirtSizeFilter(e.target.value)}
+                className="bg-white border border-gray-300 rounded-lg p-2"
+              >
+                <option value="">All</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+              </select>
+            </div>
+
             <div>
               <label htmlFor="sortOrder" className="mr-2 text-gray-700">
                 Order:
