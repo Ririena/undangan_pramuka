@@ -67,7 +67,7 @@ export default function Pelaksanaan() {
                             Hari / tanggal:
                           </span>
                           <span className="font-montserrat font-medium text-[#E2E9C5]">
-                            Minggu, 01 September 2024
+                            Minggu, 15 September 2024
                           </span>
                         </div>
                       </td>

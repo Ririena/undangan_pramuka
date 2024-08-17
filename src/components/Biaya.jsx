@@ -17,7 +17,7 @@ export default function Biaya() {
         <Card className="w-[300px] bg-white p-6 shadow-lg rounded-lg border border-gray-300 mb-6">
           <h2 className="font-montserrat text-lg text-center text-gray-700 mb-4">
             Kakak kakak mohon bantuan untuk mengirimkan donasi sebesar Rp.
-            180.000 / orang (Kaos, Scraft, name tag, snack, makan dan souvenir)
+            160.000 / orang (Kaos, Scraft, name tag, snack, makan dan souvenir)
           </h2>
         </Card>
 

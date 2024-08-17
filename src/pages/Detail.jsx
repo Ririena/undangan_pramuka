@@ -42,7 +42,7 @@ export default function Detail() {
   const [selectedAngkatan, setSelectedAngkatan] = useState("");
   const [name, setName] = useState("");
   const [numberOfPeople, setNumberOfPeople] = useState(1);
-  const [totalPrice, setTotalPrice] = useState(180000);
+  const [totalPrice, setTotalPrice] = useState(16000);
   const [selectedSize, setSelectedSize] = useState("");
   const audioRef = useRef(null);
   const navigate = useNavigate();
@@ -137,7 +137,7 @@ export default function Detail() {
 
   useEffect(() => {
     const validNumberOfPeople = numberOfPeople > 0 ? numberOfPeople : 1;
-    setTotalPrice(180000 + (validNumberOfPeople - 1) * 35000);
+    setTotalPrice(160000 + (validNumberOfPeople - 1) * 35000);
   }, [numberOfPeople]);
 
   useEffect(() => {
@@ -192,7 +192,7 @@ export default function Detail() {
     onOpenChange(false); // Close modal using the provided method
     setModalImage("");
   };
-  const targetDate = new Date("2024-09-01T07:00:00"); // Tanggal dan waktu target
+  const targetDate = new Date("2024-09-15T07:00:00"); // Tanggal dan waktu target
 
   useEffect(() => {
     AOS.init();
@@ -323,7 +323,7 @@ export default function Detail() {
           data-aos="zoom-in"
           className="font-violet font-semibold font-lg mt-2"
         >
-          ─ MINGGU, 1 SEPTEMBER 2024 ─
+          ─ MINGGU, 15 SEPTEMBER 2024 ─
         </p>
         <div className="mt-4 w-full max-w-md px-4">
           <h2 className="text-xl font-bold text-center mb-4">Countdown:</h2>
